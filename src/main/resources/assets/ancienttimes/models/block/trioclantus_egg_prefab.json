@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "trioclantus egg-normal",
+		"particle": "trioclantus egg-cracked a lot"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 24, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 3, 7]},
+			"faces": {
+				"north": {"uv": [4, 4, 8, 10], "texture": "#0"},
+				"east": {"uv": [0, 4, 4, 10], "texture": "#0"},
+				"south": {"uv": [12, 4, 16, 10], "texture": "#0"},
+				"west": {"uv": [8, 4, 12, 10], "texture": "#0"},
+				"up": {"uv": [8, 4, 4, 0], "texture": "#0"},
+				"down": {"uv": [12, 0, 8, 4], "texture": "#0"}
+			}
+		}
+	]
+}
