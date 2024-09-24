@@ -1,6 +1,11 @@
 package com.delu.ancienttimes.datagen;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.datagen.client.ModBlockStatesProvider;
+import com.delu.ancienttimes.datagen.client.ModItemModelsProvider;
+import com.delu.ancienttimes.datagen.client.ModLanguageProvider;
+import com.delu.ancienttimes.datagen.server.ModLoot;
+import com.delu.ancienttimes.datagen.server.ModRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -21,6 +26,10 @@ public class DataGenerator {
         gen.addProvider(event.includeClient(), new ModItemModelsProvider(output, helper));
         gen.addProvider(event.includeClient(), new ModLanguageProvider(output));
         gen.addProvider(event.includeClient(), new ModBlockStatesProvider(output, helper));
+
+        //server
+        gen.addProvider(event.includeServer(), new ModLoot(output));
+        gen.addProvider(event.includeServer(), new ModRecipeProvider(output));
     }
 }
 

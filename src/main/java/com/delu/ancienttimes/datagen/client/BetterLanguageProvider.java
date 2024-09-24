@@ -1,4 +1,4 @@
-package com.delu.ancienttimes.datagen;
+package com.delu.ancienttimes.datagen.client;
 
 import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;

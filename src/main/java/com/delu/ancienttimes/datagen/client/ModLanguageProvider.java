@@ -1,4 +1,4 @@
-package com.delu.ancienttimes.datagen;
+package com.delu.ancienttimes.datagen.client;
 
 import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.registries.ModItems;
