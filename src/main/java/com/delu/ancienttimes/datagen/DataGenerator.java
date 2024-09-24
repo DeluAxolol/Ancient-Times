@@ -20,7 +20,7 @@ public class DataGenerator {
 
         gen.addProvider(event.includeClient(), new ModItemModelsProvider(output, helper));
         gen.addProvider(event.includeClient(), new ModLanguageProvider(output));
-        gen.addProvider(event.includeClient(), new ModBlockSTatesProvider(output, helper));
+        gen.addProvider(event.includeClient(), new ModBlockStatesProvider(output, helper));
     }
 }
 

@@ -2,10 +2,7 @@ package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,6 +14,7 @@ import java.util.function.Supplier;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, AncientTimes.MODID);
+    public static final RegistryObject<Item> MARD_FLOWER = registerWithCreativeModeTab("mard_flower", CreativeModeTabs.NATURAL_BLOCKS, () -> new ItemNameBlockItem(ModBlocks.MARD_FLOWER.get(), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(64)));
 
     public static <T extends Item> RegistryObject<T> registerWithCreativeModeTab(String name, Supplier<CreativeModeTab> creativeModeTab, Supplier<T> itemGenerator) {
         RegistryObject<T> item = ITEMS.register(name, itemGenerator);
@@ -40,6 +38,5 @@ public class ModItems {
         return item;
     }
 
-    public static final RegistryObject<Item> MARD_FLOWER = registerWithCreativeModeTab("mard_flower", CreativeModeTabs.NATURAL_BLOCKS, () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(64)));
 
 }
