@@ -1,0 +1,115 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.trioclantus",
+				"texture_width": 256,
+				"texture_height": 256,
+				"visible_bounds_width": 7,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "Trioclantus",
+					"pivot": [0, 30, -4]
+				},
+				{
+					"name": "Body",
+					"parent": "Trioclantus",
+					"pivot": [0, 30, -4]
+				},
+				{
+					"name": "Body_size",
+					"parent": "Body",
+					"pivot": [0, 30, -4],
+					"cubes": [
+						{"origin": [-14, 15, -25], "size": [28, 27, 43], "uv": [0, 186]},
+						{"origin": [-14, 11, -25], "size": [28, 4, 42], "uv": [66, 104]}
+					]
+				},
+				{
+					"name": "Tail",
+					"parent": "Body",
+					"pivot": [0, 23, 16],
+					"rotation": [-7.5, 0, 0],
+					"cubes": [
+						{"origin": [-5, 18, 16], "size": [10, 10, 27], "uv": [182, 219]}
+					]
+				},
+				{
+					"name": "neck",
+					"parent": "Body",
+					"pivot": [0, 22, -25],
+					"cubes": [
+						{"origin": [-5, 17, -35], "size": [10, 10, 10], "uv": [153, 166]},
+						{"origin": [-5, 26.875, -35], "size": [10, 16, 9], "inflate": -0.04, "uv": [0, 158], "mirror": true}
+					]
+				},
+				{
+					"name": "head",
+					"parent": "neck",
+					"pivot": [0, 43, -27],
+					"cubes": [
+						{"origin": [-5, 40, -46], "size": [10, 5, 19], "uv": [198, 34]},
+						{"origin": [-5, 37, -46], "size": [10, 3, 3], "uv": [9, 195]},
+						{"origin": [-8, 38, -31.9], "size": [16, 18, 5], "uv": [0, 205]}
+					]
+				},
+				{
+					"name": "jaw",
+					"parent": "head",
+					"pivot": [0, 39, -27],
+					"cubes": [
+						{"origin": [-5, 38, -42], "size": [10, 2, 15], "uv": [206, 107]},
+						{"origin": [-5, 37, -43], "size": [10, 3, 1], "uv": [234, 71]},
+						{"origin": [4.95, 40, -38], "size": [0, 5, 11], "uv": [193, 75]},
+						{"origin": [-4.95, 40, -38], "size": [0, 5, 11], "uv": [193, 75], "mirror": true},
+						{"origin": [-5, 40, -36], "size": [10, 5, 9], "inflate": -0.03, "uv": [151, 46]}
+					]
+				},
+				{
+					"name": "Arm",
+					"parent": "Body",
+					"pivot": [14, 16, -22],
+					"cubes": [
+						{"origin": [11, 13, -22], "size": [5, 6, 14], "uv": [218, 174]}
+					]
+				},
+				{
+					"name": "Arm2",
+					"parent": "Body",
+					"pivot": [-13, 16, -22],
+					"cubes": [
+						{"origin": [-16, 13, -22], "size": [5, 6, 14], "uv": [106, 160]}
+					]
+				},
+				{
+					"name": "Leg",
+					"parent": "Trioclantus",
+					"pivot": [10, 24, 7],
+					"cubes": [
+						{"origin": [5, 10, -3], "size": [12, 14, 19], "uv": [100, 195]},
+						{"origin": [5, 0, 5], "size": [12, 10, 11], "uv": [42, 164]},
+						{"origin": [8, 0, 3], "size": [6, 3, 2], "uv": [88, 168]},
+						{"origin": [15, 0, 11], "size": [6, 3, 2], "pivot": [19, 1, 11], "rotation": [0, -90, 0], "uv": [88, 168]},
+						{"origin": [1, 0, 9], "size": [6, 3, 2], "pivot": [4, 1.5, 10], "rotation": [0, 90, 0], "uv": [88, 168]}
+					]
+				},
+				{
+					"name": "Leg2",
+					"parent": "Trioclantus",
+					"pivot": [-10, 24, 7],
+					"cubes": [
+						{"origin": [-17, 10, -3], "size": [12, 14, 19], "uv": [100, 195], "mirror": true},
+						{"origin": [-17, 0, 5], "size": [12, 10, 11], "uv": [42, 164], "mirror": true},
+						{"origin": [-7, 0, 11], "size": [6, 3, 2], "pivot": [-3, 1, 11], "rotation": [0, -90, 0], "uv": [88, 168]},
+						{"origin": [-14, 0, 3], "size": [6, 3, 2], "uv": [88, 168]},
+						{"origin": [-21, 0, 9], "size": [6, 3, 2], "pivot": [-18, 1.5, 10], "rotation": [0, 90, 0], "uv": [88, 168]}
+					]
+				}
+			]
+		}
+	]
+}
