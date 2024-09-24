@@ -1,15 +1,20 @@
 package com.delu.ancienttimes.datagen.server.loot;
 
+import com.google.common.collect.Lists;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -23,7 +28,7 @@ public class PlantLootBuilder<T extends Comparable<T>> {
     protected final Property<T> age;
     protected final ItemLike defaultDrop;
 
-    protected Map<T, LootPool.Builder> pools = new HashMap<>();
+    protected Map<T, List<LootPool.Builder>> pools = new HashMap<>();
 
     public PlantLootBuilder(Property<T> age, ItemLike defaultDrop) {
         this.age = age;
@@ -32,7 +37,11 @@ public class PlantLootBuilder<T extends Comparable<T>> {
 
     public PlantLootBuilder<T> whenAge(T age, LootPool.Builder pool) {
         checkValue(age);
-        pools.put(age, pool);
+        if (!pools.containsKey(age)) {
+            pools.put(age, Lists.newArrayList(pool));
+        } else {
+            pools.get(age).add(pool);
+        }
         return this;
     }
 
@@ -44,20 +53,38 @@ public class PlantLootBuilder<T extends Comparable<T>> {
         return whenAge(age, generator.apply(age, this.defaultDrop));
     }
 
+    public PlantLootBuilder<T> whenAge(T age, ItemLike item){
+        return whenAge(age, LootPool.lootPool().add(LootItem.lootTableItem(item)));
+    }
+
+    public PlantLootBuilder<T> whenAge(T age, ItemLike item, float chance){
+        return whenAge(age, LootPool.lootPool().add(LootItem.lootTableItem(item)).when(LootItemRandomChanceCondition.randomChance(Mth.clamp(chance, 0f, 1f))));
+    }
+
+    public PlantLootBuilder<T> defaultWhenAge(T age, float chance){
+        return whenAge(age, defaultDrop, chance);
+    }
+
+    public PlantLootBuilder<T> defaultWhenAge(T age){
+        return whenAge(age, this.defaultDrop);
+    }
+
     public LootTable.Builder build(Block block) {
         LootTable.Builder builder = LootTable.lootTable();
-        for (Map.Entry<T, LootPool.Builder> entry : this.pools.entrySet()) {
+        for (Map.Entry<T, List<LootPool.Builder>> entry : this.pools.entrySet()) {
             StatePropertiesPredicate.Builder propertiesBuilder = StatePropertiesPredicate.Builder.properties();
-            if (entry.getKey() instanceof Integer intValue){
+            if (entry.getKey() instanceof Integer intValue) {
                 propertiesBuilder.hasProperty(this.age, Integer.toString(intValue));
-            }else if (entry.getKey() instanceof Boolean boolValue){
+            } else if (entry.getKey() instanceof Boolean boolValue) {
                 propertiesBuilder.hasProperty(this.age, Boolean.toString(boolValue));
-            }else if (entry.getKey() instanceof  StringRepresentable representer){
+            } else if (entry.getKey() instanceof StringRepresentable representer) {
                 propertiesBuilder.hasProperty(this.age, representer.getSerializedName());
-            }else {
+            } else {
                 propertiesBuilder.hasProperty(this.age, entry.getKey().toString());
             }
-            builder.withPool(entry.getValue().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(propertiesBuilder)));
+            for (LootPool.Builder pool : entry.getValue()) {
+                builder.withPool(pool.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(propertiesBuilder)));
+            }
         }
         return builder;
     }
