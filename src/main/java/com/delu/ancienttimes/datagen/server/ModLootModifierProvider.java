@@ -17,6 +17,6 @@ public class ModLootModifierProvider extends GlobalLootModifierProvider {
     protected void start() {
         add("add_sniffer_drops", new AddItemModifier(new LootItemCondition[]{
                 LootItemRandomChanceCondition.randomChance(0.35f).build()
-        }, ModItems.MARD_FLOWER.get()));
+        }, ModItems.MARD_BULB.get()));
     }
 }
