@@ -1,6 +1,7 @@
 package com.delu.ancienttimes;
 
 import com.delu.ancienttimes.registries.ModBlocks;
+import com.delu.ancienttimes.registries.ModEntities;
 import com.delu.ancienttimes.registries.ModItems;
 import com.delu.ancienttimes.registries.ModLootModifiers;
 import com.mojang.logging.LogUtils;
@@ -33,12 +34,25 @@ public class AncientTimes {
         return new ResourceLocation(MODID, name);
     }
 
+    public static ResourceLocation geo(String name) {
+        return modLoc("geo/" + name);
+    }
+
+    public static ResourceLocation animations(String name) {
+        return modLoc("animations/" + name);
+    }
+
+    public static ResourceLocation entityTexture(String name) {
+        return modLoc("textures/entity/" + name);
+    }
+
     public AncientTimes() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.ITEMS.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModLootModifiers.LOOT_MODIFIER_SERIALIZER.register(modEventBus);
+        ModEntities.ENTITIES.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in
