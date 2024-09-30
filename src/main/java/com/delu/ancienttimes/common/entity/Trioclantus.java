@@ -19,7 +19,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Triclantus extends Animal implements GeoEntity {
+public class Trioclantus extends Animal implements GeoEntity {
 
 
     public static AttributeSupplier.Builder createAttributes(){
@@ -29,11 +29,11 @@ public class Triclantus extends Animal implements GeoEntity {
     }
 
     protected AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    public Triclantus(EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public Trioclantus(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
-    protected PlayState predicate(AnimationState<Triclantus> event){
+    protected PlayState predicate(AnimationState<Trioclantus> event){
 
 
         return PlayState.CONTINUE;

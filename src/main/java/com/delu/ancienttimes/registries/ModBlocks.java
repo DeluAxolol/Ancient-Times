@@ -2,6 +2,7 @@ package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.common.block.MardFlower;
+import com.delu.ancienttimes.common.block.ScalemouflisEggBlock;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,6 +24,8 @@ public class ModBlocks {
 
     public static final RegistryObject<MardFlower> MARD_FLOWER = BLOCKS.register("mard_flower",
             () -> new MardFlower(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
+
+
 
     public static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier) {
         return register(name, blockSupplier, Item.Properties::new);
