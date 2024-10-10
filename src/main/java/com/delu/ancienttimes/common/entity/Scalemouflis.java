@@ -1,6 +1,7 @@
 package com.delu.ancienttimes.common.entity;
 
 import com.delu.ancienttimes.registries.ModEntities;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
@@ -10,10 +11,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cod;
-import net.minecraft.world.entity.animal.PolarBear;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -26,16 +25,19 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.EnumSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.function.Predicate;
 
 public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     private int remainingPersistentAngerTime = 0;
     private UUID persistenAngerTarget;
     private static final UniformInt ANGRY_TIMER = TimeUtil.rangeOfSeconds(30, 60);
     final Random random = new Random();
+    private int varient = 0;
+
+    public static final List<ResourceLocation> ScalemouflisTextures = new ArrayList<ResourceLocation>();
 
     public static AttributeSupplier.Builder createAttributes(){
         return Animal.createMobAttributes()
@@ -75,9 +77,12 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     protected void registerGoals() {
         super.registerGoals();
         this.targetSelector.addGoal(1,new NearestAttackableTargetGoal<>(this, Cod.class, 10, true, true, null));
-        this.goalSelector.addGoal(3, new BreedGoal(this, 1.1D));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 7.5f));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.1D));
+        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 7.5f));
+
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     @Override
@@ -104,6 +109,14 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     @Override
     public void startPersistentAngerTimer() {
         this.setRemainingPersistentAngerTime(ANGRY_TIMER.sample((RandomSource) this.random));
+    }
+
+    public int getVarient() {
+        return varient;
+    }
+
+    public void setVarient(int varient) {
+        this.varient = varient;
     }
 
     @Override
