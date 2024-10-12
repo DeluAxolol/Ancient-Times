@@ -1,9 +1,6 @@
 package com.delu.ancienttimes;
 
-import com.delu.ancienttimes.registries.ModBlocks;
-import com.delu.ancienttimes.registries.ModEntities;
-import com.delu.ancienttimes.registries.ModItems;
-import com.delu.ancienttimes.registries.ModLootModifiers;
+import com.delu.ancienttimes.registries.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +50,8 @@ public class AncientTimes {
         ModBlocks.BLOCKS.register(modEventBus);
         ModLootModifiers.LOOT_MODIFIER_SERIALIZER.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
+
+        ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in

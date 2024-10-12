@@ -22,6 +22,8 @@ public class ModItems {
     public static final RegistryObject<Item> MARD_FLOWER = registerWithCreativeModeTab("mard_flower", CreativeModeTabs.NATURAL_BLOCKS, () -> new StateModificationBlockItem(ModBlocks.MARD_FLOWER.get(), state -> state.setValue(BlockStateProperties.AGE_3, 3), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(32)));
     public static final RegistryObject<Item> MARD_BULB = registerWithCreativeModeTab("mard_bulb", CreativeModeTabs.NATURAL_BLOCKS, () -> new ItemNameBlockItem(ModBlocks.MARD_FLOWER.get(), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(32)));
 
+    public static final RegistryObject<Item> CREATIVE_TAB_LOGO = ITEMS.register("creative_tab_logo", () -> new Item(new Item.Properties()));
+
     public static <T extends Item> RegistryObject<T> registerWithCreativeModeTab(String name, Supplier<CreativeModeTab> creativeModeTab, Supplier<T> itemGenerator) {
         RegistryObject<T> item = ITEMS.register(name, itemGenerator);
         Consumer<BuildCreativeModeTabContentsEvent> eventHooker = event -> {
