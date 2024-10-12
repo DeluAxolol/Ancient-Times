@@ -1,5 +1,6 @@
 package com.delu.ancienttimes.datagen.server;
 
+import com.delu.ancienttimes.datagen.server.loot.ModArcheologyLoot;
 import com.delu.ancienttimes.datagen.server.loot.ModBlockLoot;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
@@ -12,7 +13,8 @@ import java.util.Set;
 public class ModLoot extends LootTableProvider {
     public ModLoot(PackOutput output) {
         super(output, Set.of(), List.of(
-new SubProviderEntry(ModBlockLoot::new, LootContextParamSets.BLOCK)
+                new SubProviderEntry(ModBlockLoot::new, LootContextParamSets.BLOCK),
+                new SubProviderEntry(ModArcheologyLoot::new, LootContextParamSets.ARCHAEOLOGY)
         ));
     }
 }
