@@ -1,9 +1,14 @@
 package com.delu.ancienttimes.common.entity;
 
+import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.common.util.NbtUtils;
 import com.delu.ancienttimes.registries.ModEntities;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.*;
@@ -25,19 +30,12 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
-    private int remainingPersistentAngerTime = 0;
-    private UUID persistenAngerTarget;
     private static final UniformInt ANGRY_TIMER = TimeUtil.rangeOfSeconds(30, 60);
-    final Random random = new Random();
-    private int varient = 0;
 
-    public static final List<ResourceLocation> ScalemouflisTextures = new ArrayList<ResourceLocation>();
+    public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Scalemouflis.class, EntityDataSerializers.INT);
 
     public static AttributeSupplier.Builder createAttributes(){
         return Animal.createMobAttributes()
@@ -46,12 +44,20 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
                 .add(Attributes.ATTACK_SPEED, 0.5)
                 .add(Attributes.ATTACK_DAMAGE, 4.8);
     }
+    private int remainingPersistentAngerTime = 0;
+    private UUID persistentAngerTarget;
+    protected AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
 
     public Scalemouflis(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
-    protected AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VARIANT, Variant.generateRandom(this.level().random).ordinal());
+    }
 
     protected <E extends Scalemouflis> PlayState testAnimController(AnimationState<E> event){
         return PlayState.CONTINUE;
@@ -98,29 +104,65 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     @Nullable
     @Override
     public UUID getPersistentAngerTarget() {
-        return persistenAngerTarget;
+        return persistentAngerTarget;
     }
 
     @Override
     public void setPersistentAngerTarget(@Nullable UUID uuid) {
-        persistenAngerTarget = uuid;
+        persistentAngerTarget = uuid;
     }
 
     @Override
     public void startPersistentAngerTimer() {
-        this.setRemainingPersistentAngerTime(ANGRY_TIMER.sample((RandomSource) this.random));
+        this.setRemainingPersistentAngerTime(ANGRY_TIMER.sample(this.level().random));
     }
 
-    public int getVarient() {
-        return varient;
-    }
-
-    public void setVarient(int varient) {
-        this.varient = varient;
+    public Variant getVariant() {
+        return Variant.values()[entityData.get(VARIANT)];
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        NbtUtils.setIfExists(pCompound, "variant", CompoundTag::getInt, this.entityData, VARIANT);
+        NbtUtils.setIfExists(pCompound, "persistentAngerTarget", CompoundTag::getUUID, this::setPersistentAngerTarget);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putInt("variant", getVariant().ordinal());
+        if (this.getPersistentAngerTarget() != null)
+            pCompound.putUUID("persistentAngerTarget", this.getPersistentAngerTarget());
+    }
+
+    public void setVariant(Variant variant) {
+        this.entityData.set(VARIANT, variant.ordinal());
+    }
+
+
+
+    public enum Variant{
+        VARIANT1(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant1.png")),
+        VARIANT2(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant2.png")),
+        VARIANT3(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant3.png")),
+        VARIANT4(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant4.png")),
+        VARIANT5(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant5.png")),
+        VARIANT6(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant6.png"))
+        ;
+
+        private final ResourceLocation texture;
+
+        Variant(ResourceLocation texture) {
+            this.texture = texture;
+        }
+
+        public ResourceLocation getTexture() {
+            return texture;
+        }
+
+        public static Variant generateRandom(RandomSource random){
+            return Variant.values()[random.nextInt(Variant.values().length)];
+        }
     }
 }

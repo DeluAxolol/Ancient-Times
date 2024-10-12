@@ -9,10 +9,14 @@ import net.minecraft.world.level.block.Block;
 import static net.minecraft.tags.TagEntry.tag;
 
 public class ModTags {
-    public static final TagKey<Block> SCALEMOUFLIS_EGG_HATCH_BOOST = blockTag("scalemouflis_egg_hatch_boost");
+
+    public static class Blocks {
+        public static final TagKey<Block> SCALEMOUFLIS_EGG_HATCH_BOOST = blockTag("scalemouflis_egg_hatch_boost");
+        public static final TagKey<Block> TRIOCLANTUS_DIGGABLES = blockTag("tiroclantus_diggables");
 
 
-    private static TagKey<Block> blockTag(String name) {
-        return BlockTags.create(new ResourceLocation(AncientTimes.MODID, name));
+        private static TagKey<Block> blockTag(String name) {
+            return BlockTags.create(new ResourceLocation(AncientTimes.MODID, name));
+        }
     }
 }

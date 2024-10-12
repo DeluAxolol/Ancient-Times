@@ -13,13 +13,7 @@ public class ScalemouflisModel extends GeoModel<Scalemouflis> {
 
     @Override
     public ResourceLocation getTextureResource(Scalemouflis scalemouflis) {
-        Scalemouflis.ScalemouflisTextures.add(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant1.png"));
-        Scalemouflis.ScalemouflisTextures.add(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant2.png"));
-        Scalemouflis.ScalemouflisTextures.add(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant3.png"));
-        Scalemouflis.ScalemouflisTextures.add(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant4.png"));
-        Scalemouflis.ScalemouflisTextures.add(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant5.png"));
-        Scalemouflis.ScalemouflisTextures.add(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant6.png"));
-        return Scalemouflis.ScalemouflisTextures.get(scalemouflis.getVarient());
+        return scalemouflis.getVariant().getTexture();
     }
 
     @Override

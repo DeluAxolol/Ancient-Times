@@ -4,6 +4,7 @@ import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.datagen.client.ModBlockStatesProvider;
 import com.delu.ancienttimes.datagen.client.ModItemModelsProvider;
 import com.delu.ancienttimes.datagen.client.ModLanguageProvider;
+import com.delu.ancienttimes.datagen.server.ModBlockTagsProvider;
 import com.delu.ancienttimes.datagen.server.ModLoot;
 import com.delu.ancienttimes.datagen.server.ModLootModifierProvider;
 import com.delu.ancienttimes.datagen.server.ModRecipeProvider;
@@ -32,6 +33,8 @@ public class DataGenerator {
         gen.addProvider(event.includeServer(), new ModLoot(output));
         gen.addProvider(event.includeServer(), new ModRecipeProvider(output));
         gen.addProvider(event.includeServer(), new ModLootModifierProvider(output));
+
+        ModBlockTagsProvider provider = gen.addProvider(event.includeServer(), new ModBlockTagsProvider(output, event.getLookupProvider(), helper));
     }
 }
 

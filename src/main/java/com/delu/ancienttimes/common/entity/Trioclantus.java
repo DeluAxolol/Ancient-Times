@@ -10,6 +10,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -31,8 +32,28 @@ public class Trioclantus extends Animal implements GeoEntity {
     protected AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public Trioclantus(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+
+        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+        this.setPathfindingMalus(BlockPathTypes.DANGER_POWDER_SNOW, -1.0F);
+        this.setPathfindingMalus(BlockPathTypes.DAMAGE_CAUTIOUS, -1.0F);
     }
 
+    public void onPathfindingStart() {
+        super.onPathfindingStart();
+        if (this.isOnFire() || this.isInWater()) {
+            this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        }
+
+    }
+
+    public void onPathfindingDone() {
+        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+    }
+
+
+    public boolean canSniff() {
+        return !this.isInWater() && !this.isInLove() && this.onGround() && !this.isPassenger();
+    }
     protected PlayState predicate(AnimationState<Trioclantus> event){
 
 
