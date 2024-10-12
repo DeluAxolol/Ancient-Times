@@ -36,12 +36,12 @@ public class ScalemouflisEggBlock extends Block {
 
     public ScalemouflisEggBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(HATCH, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(HATCH, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(new Property[]{HATCH});
+        pBuilder.add(HATCH);
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -49,7 +49,7 @@ public class ScalemouflisEggBlock extends Block {
     }
 
     public int getHatchLevel(BlockState pState) {
-        return (Integer)pState.getValue(HATCH);
+        return pState.getValue(HATCH);
     }
 
     private boolean isReadyToHatch(BlockState pState) {
@@ -87,7 +87,7 @@ public class ScalemouflisEggBlock extends Block {
     }
 
     public static boolean hatchBoost(BlockGetter pLevel, BlockPos pPos) {
-        return pLevel.getBlockState(pPos.below()).is(ModTags.SCALEMOUFLIS_EGG_HATCH_BOOST);
+        return pLevel.getBlockState(pPos.below()).is(ModTags.Blocks.SCALEMOUFLIS_EGG_HATCH_BOOST);
     }
 
     static {
