@@ -32,6 +32,17 @@ public class ModBlockLoot extends BlockLootSubProvider {
     @Override
     protected void generate() {
         makeBushBlocks();
+        dropSelf(
+                ModBlocks.STRIPPED_MEAL_LOG,
+                ModBlocks.MEAL_DOOR,
+                ModBlocks.MEAL_TRAPDOOR,
+                ModBlocks.MEAL_LOG,
+                ModBlocks.MEAL_PLANKS,
+                ModBlocks.MEAL_LEAVES,
+                ModBlocks.MEAL_SAPLING,
+                ModBlocks.MEAL_STAIRS,
+                ModBlocks.MEAL_SLAB
+        );
     }
 
     protected void makeBushBlocks() {
