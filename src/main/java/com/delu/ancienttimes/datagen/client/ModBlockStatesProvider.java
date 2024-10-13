@@ -60,7 +60,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
 
     protected void sapling(Block sapling){
         ResourceLocation saplingTexture = blockTexture(sapling);
-        simpleBlock(sapling, models().cross(key(sapling).getPath(), saplingTexture));
+        simpleBlock(sapling, models().cross(key(sapling).getPath(), saplingTexture).renderType(mcLoc("cutout")));
         basicItem(sapling);
     }
 
