@@ -71,7 +71,7 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "he", 10, this::testAnimController));
+        controllers.add(new AnimationController<>(this, "scallywag", 10, this::testAnimController));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
         this.targetSelector.addGoal(1,new NearestAttackableTargetGoal<>(this, Cod.class, 10, true, true, null));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.1D));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.8D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 7.5f));
 
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
@@ -143,13 +143,9 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
 
 
     public enum Variant{
-        VARIANT1(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant1.png")),
-        VARIANT2(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant2.png")),
-        VARIANT3(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant3.png")),
-        VARIANT4(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant4.png")),
-        VARIANT5(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant5.png")),
-        VARIANT6(AncientTimes.entityTexture("scalemouflis/scalemouflistexturevariant6.png"))
-        ;
+        VARIANT1(AncientTimes.entityTexture("scalemouflis/scalemouflis_blood_texture.png")),
+        VARIANT2(AncientTimes.entityTexture("scalemouflis/scalemouflis_pond_snail_texture.png")),
+        VARIANT3(AncientTimes.entityTexture("scalemouflis/scalemouflis_normal_texture.png"));
 
         private final ResourceLocation texture;
 
