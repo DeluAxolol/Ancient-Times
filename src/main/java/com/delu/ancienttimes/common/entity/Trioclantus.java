@@ -5,6 +5,7 @@ import com.delu.ancienttimes.common.tags.ModTags;
 import com.delu.ancienttimes.common.util.NbtUtils;
 import com.delu.ancienttimes.registries.ModEntities;
 import com.delu.ancienttimes.registries.ModLootTables;
+import net.minecraft.client.model.CowModel;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

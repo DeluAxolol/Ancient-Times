@@ -43,9 +43,6 @@ public class ModBlocks {
     public static final RegistryObject<SlabBlock> MEAL_SLAB = registerWithTab("meal_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<StairBlock> MEAL_STAIRS = registerWithTab("meal_stairs", () -> new StairBlock(() -> ModBlocks.MEAL_PLANKS.get().defaultBlockState() ,BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
-
-
-
     public static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier) {
         return register(name, blockSupplier, Item.Properties::new);
     }

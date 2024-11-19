@@ -71,9 +71,9 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
         this.entityData.define(VARIANT, Variant.generateRandom(this.level().random).ordinal());
     }
 
-    protected <E extends Scalemouflis> PlayState testAnimController(AnimationState<E> event){
+    protected <E extends Scalemouflis> PlayState testAnimController(AnimationState<E> event){ // TODO add attack animations
         if (event.isMoving()) {
-            if (this.isSwimming()) {
+            if (this.isInWater()) {
                 return event.setAndContinue(SWIM);
             } else {
                 return event.setAndContinue(WALK);
