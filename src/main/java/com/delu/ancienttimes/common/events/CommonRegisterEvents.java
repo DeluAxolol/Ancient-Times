@@ -1,6 +1,7 @@
 package com.delu.ancienttimes.common.events;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.common.entity.Rumoroxl;
 import com.delu.ancienttimes.common.entity.Scalemouflis;
 import com.delu.ancienttimes.common.entity.Trioclantus;
 import com.delu.ancienttimes.registries.ModEntities;
@@ -15,5 +16,6 @@ public class CommonRegisterEvents {
     public static void registerEntityAttributes(EntityAttributeCreationEvent event){
         event.put(ModEntities.TRIOCLANTUS.get(), Trioclantus.createAttributes().build());
         event.put(ModEntities.SCALEMOUFLIS.get(), Scalemouflis.createAttributes().build());
+        event.put(ModEntities.RUMOROXL.get(), Rumoroxl.createAttributes().build());
     }
 }

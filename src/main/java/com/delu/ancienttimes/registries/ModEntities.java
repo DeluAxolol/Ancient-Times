@@ -1,6 +1,7 @@
 package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.common.entity.Rumoroxl;
 import com.delu.ancienttimes.common.entity.Scalemouflis;
 import com.delu.ancienttimes.common.entity.Trioclantus;
 import net.minecraft.world.entity.Entity;
@@ -16,8 +17,9 @@ public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, AncientTimes.MODID);
 
-    public static final RegistryObject<EntityType<Trioclantus>> TRIOCLANTUS = register("trioclantus", () -> EntityType.Builder.of(Trioclantus::new, MobCategory.MONSTER));
-    public static final RegistryObject<EntityType<Scalemouflis>> SCALEMOUFLIS = register("scalemouflis", () -> EntityType.Builder.of(Scalemouflis::new, MobCategory.MONSTER));
+    public static final RegistryObject<EntityType<Trioclantus>> TRIOCLANTUS = register("trioclantus", () -> EntityType.Builder.of(Trioclantus::new, MobCategory.MONSTER).sized(2.5f, 3.5f));
+    public static final RegistryObject<EntityType<Scalemouflis>> SCALEMOUFLIS = register("scalemouflis", () -> EntityType.Builder.of(Scalemouflis::new, MobCategory.MONSTER).sized(1.75f, 1f));
+    public static final RegistryObject<EntityType<Rumoroxl>> RUMOROXL = register("rumoroxl", () -> EntityType.Builder.of(Rumoroxl::new, MobCategory.MONSTER).sized(1.75f, 0.75f));
 
     public static <T extends Entity> RegistryObject<EntityType<T>> register(String name, Supplier<EntityType.Builder<T>> builder) {
         return ENTITIES.register(name, () -> builder.get().build(AncientTimes.modLoc(name).toString()));

@@ -1,6 +1,7 @@
 package com.delu.ancienttimes.client.events;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.client.model.RumoroxlModel;
 import com.delu.ancienttimes.client.model.ScalemouflisModel;
 import com.delu.ancienttimes.client.model.TrioclantusModel;
 import com.delu.ancienttimes.registries.ModEntities;
@@ -21,6 +22,7 @@ public class ClientRegisterRenderEvents {
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(ModEntities.TRIOCLANTUS.get(), createGeoRenderer(new TrioclantusModel()));
         event.registerEntityRenderer(ModEntities.SCALEMOUFLIS.get(), createGeoRenderer(new ScalemouflisModel()));
+        event.registerEntityRenderer(ModEntities.RUMOROXL.get(), createGeoRenderer(new RumoroxlModel()));
     }
 
     public static <T extends LivingEntity & GeoEntity> EntityRendererProvider<T> createGeoRenderer(GeoModel<T> model) {

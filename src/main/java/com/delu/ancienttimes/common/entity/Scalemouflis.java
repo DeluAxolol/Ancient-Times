@@ -3,6 +3,7 @@ package com.delu.ancienttimes.common.entity;
 import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.common.util.NbtUtils;
 import com.delu.ancienttimes.registries.ModEntities;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -21,18 +22,29 @@ import net.minecraft.world.entity.animal.Cod;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.EnumSet;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
+    public static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
+    public static final RawAnimation WALK = RawAnimation.begin().thenLoop("walk");
+    public static final RawAnimation SWIM = RawAnimation.begin().thenLoop("swim");
+
+    public static final RawAnimation ATTACK_AIR = RawAnimation.begin().thenPlay("attack-1-blending");
+    public static final RawAnimation ATTACK_WATER = RawAnimation.begin().thenPlay("attack-2-water");
+
     private static final UniformInt ANGRY_TIMER = TimeUtil.rangeOfSeconds(30, 60);
 
     public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Scalemouflis.class, EntityDataSerializers.INT);
@@ -60,7 +72,15 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     }
 
     protected <E extends Scalemouflis> PlayState testAnimController(AnimationState<E> event){
-        return PlayState.CONTINUE;
+        if (event.isMoving()) {
+            if (this.isSwimming()) {
+                return event.setAndContinue(SWIM);
+            } else {
+                return event.setAndContinue(WALK);
+            }
+        } else {
+            return event.setAndContinue(IDLE);
+        }
     }
 
     @Nullable
@@ -82,12 +102,13 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.targetSelector.addGoal(1,new NearestAttackableTargetGoal<>(this, Cod.class, 10, true, true, null));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.9, false));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.1D));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.8D));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 7.5f));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.5D));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 7.5f));
 
+        this.targetSelector.addGoal(1,new NearestAttackableTargetGoal<>(this, Cod.class, 10, true, true, null));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
@@ -139,8 +160,6 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     public void setVariant(Variant variant) {
         this.entityData.set(VARIANT, variant.ordinal());
     }
-
-
 
     public enum Variant{
         VARIANT1(AncientTimes.entityTexture("scalemouflis/scalemouflis_blood_texture.png")),
