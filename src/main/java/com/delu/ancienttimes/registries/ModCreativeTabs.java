@@ -16,9 +16,9 @@ public class ModCreativeTabs {
     //look in the ModItems and ModBlocks class as u see there are the tabs already defined,
     // so no need to register them here in the tab-registration, cause that might become very shit
     // when we might have more tabs, believe me
-    public static final RegistryObject<CreativeModeTab> ANCIENT_TIMES_TAB = CREATIVE_MODE_TABS.register("ancient_times_tab",
+    public static final RegistryObject<CreativeModeTab> ANCIENT_TIMES_TAB = CREATIVE_MODE_TABS.register("ancient_times",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CREATIVE_TAB_LOGO.get()))
-                    .title(Component.translatable(createTranslationKey("ancient_times_tab"))).build());
+                    .title(Component.translatable(createTranslationKey("ancient_times"))).build());
 
 
     /**

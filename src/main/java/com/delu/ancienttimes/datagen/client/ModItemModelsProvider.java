@@ -23,6 +23,9 @@ public class ModItemModelsProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simple(ModItems.MARD_FLOWER.get(), ModItems.MARD_BULB.get());
+        spawnEgg(ModItems.TRIOCLANTUS_SPAWN_EGG.get());
+        spawnEgg(ModItems.SCALEMOUFLIS_SPAWN_EGG.get());
+        spawnEgg(ModItems.RUMOROXL_SPAWN_EGG.get());
     }
 
     private void simple(Item... items) {
