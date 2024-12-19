@@ -1,5 +1,6 @@
 package com.delu.ancienttimes;
 
+import com.delu.ancienttimes.common.worldgen.tree.ModTrunkPlacerTypes;
 import com.delu.ancienttimes.registries.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -50,6 +51,7 @@ public class AncientTimes {
         ModBlocks.BLOCKS.register(modEventBus);
         ModLootModifiers.LOOT_MODIFIER_SERIALIZER.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
+        ModTrunkPlacerTypes.register(modEventBus);
 
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 
