@@ -3,6 +3,9 @@ package com.delu.ancienttimes.registries;
 import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.common.block.MardFlower;
 import com.delu.ancienttimes.common.block.ScalemouflisEggBlock;
+import com.delu.ancienttimes.common.tree.MealSapling;
+import com.delu.ancienttimes.common.tree.MealTreeGrower;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
@@ -39,7 +42,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> MEAL_LEAVES = registerWithTab("meal_leaves", () -> leaves(SoundType.GRASS), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<TrapDoorBlock> MEAL_TRAPDOOR = registerWithTab("meal_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().isValidSpawn(ModBlocks::never).ignitedByLava(), BlockSetType.OAK), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<DoorBlock> MEAL_DOOR = registerWithTab("meal_door", () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MEAL_PLANKS.get().defaultMapColor()).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY), BlockSetType.OAK), ModCreativeTabs.ANCIENT_TIMES_TAB);
-    public static final RegistryObject<SaplingBlock> MEAL_SAPLING = registerWithTab("meal_sapling", () -> new SaplingBlock(new OakTreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), ModCreativeTabs.ANCIENT_TIMES_TAB);
+    public static final RegistryObject<SaplingBlock> MEAL_SAPLING = registerWithTab("meal_sapling", () -> new MealSapling(new MealTreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<SlabBlock> MEAL_SLAB = registerWithTab("meal_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<StairBlock> MEAL_STAIRS = registerWithTab("meal_stairs", () -> new StairBlock(() -> ModBlocks.MEAL_PLANKS.get().defaultBlockState() ,BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
