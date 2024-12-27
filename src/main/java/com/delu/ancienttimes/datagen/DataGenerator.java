@@ -4,15 +4,19 @@ import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.datagen.client.ModBlockStatesProvider;
 import com.delu.ancienttimes.datagen.client.ModItemModelsProvider;
 import com.delu.ancienttimes.datagen.client.ModLanguageProvider;
+import com.delu.ancienttimes.datagen.client.ModWorldGenProvider;
 import com.delu.ancienttimes.datagen.server.ModBlockTagsProvider;
 import com.delu.ancienttimes.datagen.server.ModLoot;
 import com.delu.ancienttimes.datagen.server.ModLootModifierProvider;
 import com.delu.ancienttimes.datagen.server.ModRecipeProvider;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.concurrent.CompletableFuture;
 
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = AncientTimes.MODID)
@@ -24,6 +28,7 @@ public class DataGenerator {
         net.minecraft.data.DataGenerator gen = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
         PackOutput output = gen.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> holderLookup = event.getLookupProvider();
 
         gen.addProvider(event.includeClient(), new ModItemModelsProvider(output, helper));
         gen.addProvider(event.includeClient(), new ModLanguageProvider(output));
@@ -33,6 +38,7 @@ public class DataGenerator {
         gen.addProvider(event.includeServer(), new ModLoot(output));
         gen.addProvider(event.includeServer(), new ModRecipeProvider(output));
         gen.addProvider(event.includeServer(), new ModLootModifierProvider(output));
+        gen.addProvider(event.includeServer(), new ModWorldGenProvider(output, holderLookup));
 
         ModBlockTagsProvider provider = gen.addProvider(event.includeServer(), new ModBlockTagsProvider(output, event.getLookupProvider(), helper));
     }

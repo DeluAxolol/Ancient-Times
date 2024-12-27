@@ -56,7 +56,7 @@ public class AncientTimes {
         ModFoliagePlacerTypes.register(modEventBus);
 
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
-
+        ModPlacedFeatures.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
