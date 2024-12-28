@@ -40,6 +40,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModBlocks.MEAL_STAIRS,
                 ModBlocks.MEAL_SLAB
         );
+        shovel(ModBlocks.SUS_RED_SAND,
+                ModBlocks.SUS_CLAY,
+                ModBlocks.SUS_DIRT,
+                ModBlocks.SUS_MUD,
+                ModBlocks.SUS_SNOW
+        );
+        pickaxe(ModBlocks.SUS_ANDESITE);
     }
 
     public void pickaxe(Supplier<? extends Block>... blocks) {

@@ -21,5 +21,9 @@ public class ModLootModifierProvider extends GlobalLootModifierProvider {
                 LootItemRandomChanceCondition.randomChance(0.35f).build(),
                 new LootTableIdCondition.Builder(BuiltInLootTables.SNIFFER_DIGGING).build()
         }, ModItems.MARD_BULB.get()));
+        add("add_sniffer_drops", new AddItemModifier(new LootItemCondition[]{
+                LootItemRandomChanceCondition.randomChance(0.4f).build(),
+                new LootTableIdCondition.Builder(BuiltInLootTables.SNIFFER_DIGGING).build()
+        }, ModItems.RAVENHEAD_SEEDS.get()));
     }
 }
