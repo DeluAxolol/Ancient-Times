@@ -2,7 +2,12 @@ package com.delu.ancienttimes;
 
 import com.delu.ancienttimes.registries.*;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -48,6 +53,7 @@ public class AncientTimes {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us

@@ -1,14 +1,19 @@
 package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.common.block.BrushableBlockWithoutFall;
 import com.delu.ancienttimes.common.block.MardFlower;
 import com.delu.ancienttimes.common.block.ScalemouflisEggBlock;
 import com.delu.ancienttimes.common.tree.MealSapling;
 import com.delu.ancienttimes.common.tree.MealTreeGrower;
 
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -45,6 +50,37 @@ public class ModBlocks {
     public static final RegistryObject<SaplingBlock> MEAL_SAPLING = registerWithTab("meal_sapling", () -> new MealSapling(new MealTreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<SlabBlock> MEAL_SLAB = registerWithTab("meal_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<StairBlock> MEAL_STAIRS = registerWithTab("meal_stairs", () -> new StairBlock(() -> ModBlocks.MEAL_PLANKS.get().defaultBlockState() ,BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
+    // suspicious block
+    public static final RegistryObject<Block> SUS_RED_SAND = registerWithTab("sus_red_sand",
+            () -> new BrushableBlock(Blocks.RED_SAND, BlockBehaviour.Properties.copy(Blocks.SUSPICIOUS_SAND)
+
+            .sound(SoundType.SAND), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
+    public static final RegistryObject<Block> SUS_ANDESITE = registerWithTab("sus_andesite",
+            () -> new BrushableBlockWithoutFall(Blocks.ANDESITE, BlockBehaviour.Properties.copy(Blocks.ANDESITE)
+            , SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
+
+    public static final RegistryObject<Block> SUS_CLAY = registerWithTab("sus_clay",
+            () -> new BrushableBlockWithoutFall(Blocks.CLAY, BlockBehaviour.Properties.copy(Blocks.CLAY)
+            , SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
+
+    public static final RegistryObject<Block> SUS_DIRT = registerWithTab("sus_dirt",
+            () -> new BrushableBlockWithoutFall(Blocks.DIRT, BlockBehaviour.Properties.copy(Blocks.DIRT)
+           , SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
+
+    public static final RegistryObject<Block> SUS_MUD = registerWithTab("sus_mud",
+            () -> new BrushableBlockWithoutFall(Blocks.MUD, BlockBehaviour.Properties.copy(Blocks.MUD)
+            , SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
+
+    public static final RegistryObject<Block> SUS_SNOW = registerWithTab("sus_snow",
+            () -> new BrushableBlockWithoutFall(Blocks.SNOW_BLOCK, BlockBehaviour.Properties.copy(Blocks.SNOW_BLOCK)
+            , SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
 
     public static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier) {
         return register(name, blockSupplier, Item.Properties::new);
@@ -101,8 +137,9 @@ public class ModBlocks {
         return  new Block(BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD).ignitedByLava());
     }
 
+
     private static LeavesBlock leaves(SoundType pType) {
-        return new LeavesBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(pType).noOcclusion().isValidSpawn(ModBlocks::ocelotOrParrot).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(ModBlocks::never));
+        return new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(pType).noOcclusion().isValidSpawn(ModBlocks::ocelotOrParrot).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(ModBlocks::never));
     }
 
     private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {

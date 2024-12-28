@@ -90,7 +90,7 @@ public class MealFoliagePlacer extends FoliagePlacer {
 
     @Override
     public int foliageHeight(RandomSource random, int height, TreeConfiguration config) {
-        return 3;  // We want 3 layers of foliage
+        return 4;  // We want 3 layers of foliage
     }
 
     @Override

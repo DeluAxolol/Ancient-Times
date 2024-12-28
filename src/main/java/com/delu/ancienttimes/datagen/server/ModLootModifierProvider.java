@@ -23,10 +23,13 @@ public class ModLootModifierProvider extends GlobalLootModifierProvider {
                 LootItemRandomChanceCondition.randomChance(0.35f).build(),
                 new LootTableIdCondition.Builder(BuiltInLootTables.SNIFFER_DIGGING).build()
         }, ModItems.MARD_BULB.get()));
-
         add("add_sniffer_drops_from_suspicious_sand", new AddSusSandItemModifier(new LootItemCondition[]{
                 LootItemRandomChanceCondition.randomChance(0.5f).build(),
                 new LootTableIdCondition.Builder(new ResourceLocation("archaeology/desert_pyramid")).build()
         }, ModItems.MARD_BULB.get()));
+        add("add_sniffer_drops", new AddItemModifier(new LootItemCondition[]{
+                LootItemRandomChanceCondition.randomChance(0.4f).build(),
+                new LootTableIdCondition.Builder(BuiltInLootTables.SNIFFER_DIGGING).build()
+        }, ModItems.RAVENHEAD_SEEDS.get()));
     }
 }

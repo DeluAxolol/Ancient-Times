@@ -24,9 +24,14 @@ public class MealSapling extends SaplingBlock {
     @Override
     public void advanceTree(ServerLevel level, BlockPos pos, BlockState state, RandomSource random) {
         // Only grow the tree if it's part of a 2x2 configuration
-        if (isPartOf2x2(level, pos)) {
-            growLargeTree(level, pos, random);
+        if (state.getValue(STAGE) == 0) {
+            level.setBlock(pos, state.cycle(STAGE), 4);
+        } else {
+            if (isPartOf2x2(level, pos)) {
+                growLargeTree(level, pos, random);
+            }
         }
+
     }
 
     private boolean isPartOf2x2(Level level, BlockPos pos) {
