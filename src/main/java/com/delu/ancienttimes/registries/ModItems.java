@@ -21,6 +21,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, AncientTimes.MODID);
     public static final RegistryObject<Item> MARD_FLOWER = registerWithCreativeModeTab("mard_flower", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new StateModificationBlockItem(ModBlocks.MARD_FLOWER.get(), state -> state.setValue(BlockStateProperties.AGE_3, 3), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(32)));
     public static final RegistryObject<Item> MARD_BULB = registerWithCreativeModeTab("mard_bulb", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ItemNameBlockItem(ModBlocks.MARD_FLOWER.get(), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(32)));
+    public static final RegistryObject<Item> RAVENHEAD_SEEDS = registerWithCreativeModeTab("ravenhead_seeds", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(64)));
 
     public static final RegistryObject<Item> CREATIVE_TAB_LOGO = ITEMS.register("creative_tab_logo", () -> new Item(new Item.Properties()));
 

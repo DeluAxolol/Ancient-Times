@@ -4,7 +4,10 @@ import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.client.model.RumoroxlModel;
 import com.delu.ancienttimes.client.model.ScalemouflisModel;
 import com.delu.ancienttimes.client.model.TrioclantusModel;
+import com.delu.ancienttimes.registries.ModBlockEntityTypes;
 import com.delu.ancienttimes.registries.ModEntities;
+
+import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,5 +37,9 @@ public class ClientRegisterRenderEvents {
         public SimpleGeoRenderer(EntityRendererProvider.Context renderManager, GeoModel<T> modelProvider) {
             super(renderManager, modelProvider);
         }
+    }
+    @SubscribeEvent
+    public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
     }
 }

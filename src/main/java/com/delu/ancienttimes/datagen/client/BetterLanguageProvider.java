@@ -125,29 +125,51 @@ public abstract class BetterLanguageProvider implements DataProvider {
         if (data.put(key, value) != null)
             throw new IllegalStateException("Duplicate translation key " + key);
     }
-
     public static String toTitleCase(String input) {
         StringBuilder titleCase = new StringBuilder();
-        boolean nextTitleCase = true;
 
-        for (char c : input.toCharArray()) {
-            if (c == '_') {
-                nextTitleCase = true;
-                titleCase.append(" ");
-                continue;
-            }
+        // Handling custom names for specific cases
+        switch (input) {
+            case "meal_log":
+                return "Mealwood Log";
+            case "stripped_meal_log":
+                return "Stripped Mealwood Log";
+            case "meal_planks":
+                return "Mealwood Planks";
+            case "meal_leaves":
+                return "Mealwood Leaves";
+            case "meal_trapdoor":
+                return "Mealwood Trapdoor";
+            case "meal_door":
+                return "Mealwood Door";
+            case "meal_slab":
+                return "Mealwood Slab";
+            case "meal_sapling":
+                return "Mealwood Sapling";
+            case "meal_stairs":
+                return "Mealwood Stairs";
+            default:
+                // For general cases, convert to title case
+                boolean nextTitleCase = true;
+                for (char c : input.toCharArray()) {
+                    if (c == '_') {
+                        nextTitleCase = true;
+                        titleCase.append(" ");
+                        continue;
+                    }
 
-            if (nextTitleCase) {
-                c = Character.toTitleCase(c);
-                nextTitleCase = false;
-            } else {
-                c = Character.toLowerCase(c);
-            }
+                    if (nextTitleCase) {
+                        c = Character.toTitleCase(c);
+                        nextTitleCase = false;
+                    } else {
+                        c = Character.toLowerCase(c);
+                    }
 
-            titleCase.append(c);
+                    titleCase.append(c);
+                }
+                return titleCase.toString();
         }
-
-        return titleCase.toString();
     }
+
 }
 
