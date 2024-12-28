@@ -35,6 +35,7 @@ public class MealTrunkPlacer extends TrunkPlacer {
                                                             RandomSource random, int height, BlockPos pos, TreeConfiguration config) {
         List<FoliagePlacer.FoliageAttachment> foliagePositions = new ArrayList<>();
         int base = 5 + random.nextInt(2);
+        int randomHeightOfUpperTrunk = 7 + random.nextInt(2);
         // Base (4x4) trunk
         for (int y = 0; y < base-2; y++) {
             placeSquareTrunk(reader, replacer, pos.above(y), 4, config, false, random);
@@ -44,7 +45,7 @@ public class MealTrunkPlacer extends TrunkPlacer {
         for (int y = base-2; y < base; y++) {
             placeSquareTrunk(reader, replacer, pos.above(y), 4, config, true, random);
         }
-        for (int y = base; y < base + heightRandB; y++) {
+        for (int y = base; y < base + randomHeightOfUpperTrunk; y++) {
             placeSquareTrunk(reader, replacer, pos.above(y), 2, config, false, random);
         }
         int leftrightoffset = random.nextInt(2);
@@ -67,7 +68,7 @@ public class MealTrunkPlacer extends TrunkPlacer {
 
 
         // Add foliage positions
-        foliagePositions.add(new FoliagePlacer.FoliageAttachment(pos.above(base + heightRandB), 1, false));
+        foliagePositions.add(new FoliagePlacer.FoliageAttachment(pos.above(base + randomHeightOfUpperTrunk), 1, false));
         return foliagePositions;
     }
 
