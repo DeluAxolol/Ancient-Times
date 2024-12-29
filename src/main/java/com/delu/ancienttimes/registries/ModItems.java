@@ -1,6 +1,9 @@
 package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.common.item.DiamondChisel;
+import com.delu.ancienttimes.common.item.MagnifyingGlass;
+import com.delu.ancienttimes.common.item.RavenheadsFruit;
 import com.delu.ancienttimes.common.item.StateModificationBlockItem;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
@@ -21,8 +24,19 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, AncientTimes.MODID);
     public static final RegistryObject<Item> MARD_FLOWER = registerWithCreativeModeTab("mard_flower", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new StateModificationBlockItem(ModBlocks.MARD_FLOWER.get(), state -> state.setValue(BlockStateProperties.AGE_3, 3), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(32)));
     public static final RegistryObject<Item> MARD_BULB = registerWithCreativeModeTab("mard_bulb", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ItemNameBlockItem(ModBlocks.MARD_FLOWER.get(), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(32)));
-    public static final RegistryObject<Item> RAVENHEAD_SEEDS = registerWithCreativeModeTab("ravenhead_seeds", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(64)));
-
+    public static final RegistryObject<Item> RAVENHEAD_SEEDS = registerWithCreativeModeTab("ravenhead_seeds", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ItemNameBlockItem(ModBlocks.RAVENHEAD_SPROUTS.get(), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(64)));
+    public static final RegistryObject<Item> MAGNIFYING_GLASS = registerWithCreativeModeTab("magnifying_glass",ModCreativeTabs.ANCIENT_TIMES_TAB,
+            () -> new MagnifyingGlass(new Item.Properties().stacksTo(1).durability(64))
+    );
+    public static final RegistryObject<Item> DIAMOND_CHISEL = registerWithCreativeModeTab("diamond_chisel",ModCreativeTabs.ANCIENT_TIMES_TAB,
+            () -> new DiamondChisel(new Item.Properties().stacksTo(1).durability(64))
+    );
+    public static final RegistryObject<Item> RAVENHEADS_FRUIT = registerWithCreativeModeTab("ravenheads_fruit",ModCreativeTabs.ANCIENT_TIMES_TAB,
+            () -> new RavenheadsFruit(new Item.Properties().stacksTo(16))
+    );
+    public static final RegistryObject<Item> ROTTEN_RAVENHEADS_FRUIT = registerWithCreativeModeTab("rotten_ravenheads_fruit",ModCreativeTabs.ANCIENT_TIMES_TAB,
+            () -> new Item(new Item.Properties().stacksTo(16))
+    );
     public static final RegistryObject<Item> CREATIVE_TAB_LOGO = ITEMS.register("creative_tab_logo", () -> new Item(new Item.Properties()));
 
     public static <T extends Item> RegistryObject<T> registerWithCreativeModeTab(String name, Supplier<CreativeModeTab> creativeModeTab, Supplier<T> itemGenerator) {

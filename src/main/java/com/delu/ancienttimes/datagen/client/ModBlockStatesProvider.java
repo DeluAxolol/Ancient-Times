@@ -1,16 +1,20 @@
 package com.delu.ancienttimes.datagen.client;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.common.block.RavenheadSprouts;
 import com.delu.ancienttimes.common.util.ResourceLocationUtils;
 import com.delu.ancienttimes.registries.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Function;
 
 public class ModBlockStatesProvider extends BlockStateProvider {
 
@@ -30,6 +34,8 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         makeTrapdoor(ModBlocks.MEAL_TRAPDOOR.get());
         stairsFromPlanks(ModBlocks.MEAL_STAIRS.get(), ModBlocks.MEAL_PLANKS.get());
         slabFromPlanks(ModBlocks.MEAL_SLAB.get(), ModBlocks.MEAL_PLANKS.get());
+        makeRavenHeadSproutsModel((CropBlock) ModBlocks.RAVENHEAD_SPROUTS.get(), "ravenheadsprouts_stage", "ravenheadsprouts_stage");
+
     }
 
     public void stairsFromPlanks(StairBlock stair, Block planks){
@@ -78,6 +84,20 @@ public class ModBlockStatesProvider extends BlockStateProvider {
 
             return ConfiguredModel.builder().modelFile(models().withExistingParent(modelName + "_stage_" + age, modLoc("block/mard_flower_prefab")).texture("crop", "block/" + modelName + "_stage_" + age).renderType(mcLoc("cutout"))).build();
         });
+    }
+
+    public void makeRavenHeadSproutsModel(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> ravenHeadSproutsStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] ravenHeadSproutsStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((RavenheadSprouts) block).getAgeProperty()),
+                new ResourceLocation(AncientTimes.MODID, "block/" + textureName + state.getValue(((RavenheadSprouts) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
     }
 
     public void basicItem(Block item)

@@ -22,7 +22,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simple(ModItems.MARD_FLOWER.get(), ModItems.MARD_BULB.get(), ModItems.RAVENHEAD_SEEDS.get());
+        simple(ModItems.MARD_FLOWER.get(), ModItems.MARD_BULB.get(), ModItems.RAVENHEAD_SEEDS.get(), ModItems.MAGNIFYING_GLASS.get(), ModItems.DIAMOND_CHISEL.get(), ModItems.RAVENHEADS_FRUIT.get(), ModItems.ROTTEN_RAVENHEADS_FRUIT.get());
     }
 
     private void simple(Item... items) {

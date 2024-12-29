@@ -1,7 +1,9 @@
 package com.delu.ancienttimes.datagen.server.loot;
 
+import com.delu.ancienttimes.common.block.RavenheadSprouts;
 import com.delu.ancienttimes.registries.ModBlocks;
 import com.delu.ancienttimes.registries.ModItems;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +16,8 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 
@@ -53,6 +57,24 @@ public class ModBlockLoot extends BlockLootSubProvider {
                 .defaultWhenAge(3, 0.4f)
                 .whenAge(3, ModItems.MARD_FLOWER.get())
         );
+        LootItemCondition.Builder stage3Condition = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.RAVENHEAD_SPROUTS.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RavenheadSprouts.AGE, 3));
+
+        LootItemCondition.Builder stage4Condition = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.RAVENHEAD_SPROUTS.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RavenheadSprouts.AGE, 4));
+
+        this.add(ModBlocks.RAVENHEAD_SPROUTS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(ModItems.RAVENHEADS_FRUIT.get())
+                                .when(stage3Condition)))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(ModItems.ROTTEN_RAVENHEADS_FRUIT.get())
+                                .when(stage4Condition)))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(ModItems.RAVENHEAD_SEEDS.get())
+                                .when(stage3Condition.or(stage4Condition)))));
     }
 
     @SafeVarargs
