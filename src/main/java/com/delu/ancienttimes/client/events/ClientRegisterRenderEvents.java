@@ -4,11 +4,16 @@ import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.client.model.RumoroxlModel;
 import com.delu.ancienttimes.client.model.ScalemouflisModel;
 import com.delu.ancienttimes.client.model.TrioclantusModel;
+import com.delu.ancienttimes.client.renderer.RavenheadsFruitRenderer;
+import com.delu.ancienttimes.common.item.RavenheadsFruit;
+import com.delu.ancienttimes.common.item.RavenheadsFruitEntity;
 import com.delu.ancienttimes.registries.ModBlockEntityTypes;
 import com.delu.ancienttimes.registries.ModEntities;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -26,7 +31,11 @@ public class ClientRegisterRenderEvents {
         event.registerEntityRenderer(ModEntities.TRIOCLANTUS.get(), createGeoRenderer(new TrioclantusModel()));
         event.registerEntityRenderer(ModEntities.SCALEMOUFLIS.get(), createGeoRenderer(new ScalemouflisModel()));
         event.registerEntityRenderer(ModEntities.RUMOROXL.get(), createGeoRenderer(new RumoroxlModel()));
+        event.registerEntityRenderer(ModEntities.RAVENHEADS_FRUIT_ENTITY.get(),
+                RavenheadsFruitRenderer::new);
+
     }
+
 
     public static <T extends LivingEntity & GeoEntity> EntityRendererProvider<T> createGeoRenderer(GeoModel<T> model) {
         return m -> new SimpleGeoRenderer<>(m, model);
@@ -41,5 +50,6 @@ public class ClientRegisterRenderEvents {
     @SubscribeEvent
     public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntityTypes.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.CHISELABLE_BLOCK.get(), BrushableBlockRenderer::new);
     }
 }

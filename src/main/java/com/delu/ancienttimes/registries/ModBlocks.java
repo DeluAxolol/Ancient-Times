@@ -1,9 +1,7 @@
 package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.block.BrushableBlockWithoutFall;
-import com.delu.ancienttimes.common.block.MardFlower;
-import com.delu.ancienttimes.common.block.ScalemouflisEggBlock;
+import com.delu.ancienttimes.common.block.*;
 import com.delu.ancienttimes.common.tree.MealSapling;
 import com.delu.ancienttimes.common.tree.MealTreeGrower;
 
@@ -20,6 +18,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BrushableBlockEntity;
 import net.minecraft.world.level.block.grower.OakTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,6 +30,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -39,6 +40,10 @@ public class ModBlocks {
 
     public static final RegistryObject<MardFlower> MARD_FLOWER = BLOCKS.register("mard_flower",
             () -> new MardFlower(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
+
+
+    public static final RegistryObject<RavenheadSprouts> RAVENHEAD_SPROUTS = BLOCKS.register("ravenhead_sprouts",
+            () -> new RavenheadSprouts(BlockBehaviour.Properties.copy(Blocks.WHEAT).mapColor(MapColor.PLANT).noOcclusion().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
 
 
     public static final RegistryObject<RotatedPillarBlock> MEAL_LOG = registerWithTab("meal_log", () -> log(MapColor.WOOD, MapColor.PODZOL), ModCreativeTabs.ANCIENT_TIMES_TAB);
@@ -58,8 +63,13 @@ public class ModBlocks {
             .sound(SoundType.SAND), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
     public static final RegistryObject<Block> SUS_ANDESITE = registerWithTab("sus_andesite",
-            () -> new BrushableBlockWithoutFall(Blocks.ANDESITE, BlockBehaviour.Properties.copy(Blocks.ANDESITE)
-            , SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
+            () -> new BrushableBlockWithoutFall(Blocks.STONE, BlockBehaviour.Properties.copy(Blocks.STONE)
+            , SoundEvents.STONE_BREAK, SoundEvents.STONE_BREAK) {
+                @Override
+                public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+                    return new ChiselableBlockEntity(pPos, pState);
+                }
+            }, ModCreativeTabs.ANCIENT_TIMES_TAB);
 
 
     public static final RegistryObject<Block> SUS_CLAY = registerWithTab("sus_clay",
