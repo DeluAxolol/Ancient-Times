@@ -35,6 +35,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         stairsFromPlanks(ModBlocks.MEAL_STAIRS.get(), ModBlocks.MEAL_PLANKS.get());
         slabFromPlanks(ModBlocks.MEAL_SLAB.get(), ModBlocks.MEAL_PLANKS.get());
         makeRavenHeadSproutsModel((CropBlock) ModBlocks.RAVENHEAD_SPROUTS.get(), "ravenheadsprouts_stage", "ravenheadsprouts_stage");
+        simpleBlockWithItem(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get(), existing(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get())); // Blockstate pointing to an existing model
 
     }
 

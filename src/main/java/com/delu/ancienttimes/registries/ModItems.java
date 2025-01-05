@@ -38,6 +38,9 @@ public class ModItems {
     public static final RegistryObject<Item> ROTTEN_RAVENHEADS_FRUIT = registerWithCreativeModeTab("rotten_ravenheads_fruit",ModCreativeTabs.ANCIENT_TIMES_TAB,
             () -> new Item(new Item.Properties().stacksTo(16))
     );
+    public static final RegistryObject<Item> RAVENHEADS_THORNS = registerWithCreativeModeTab("ravenheads_thorns",ModCreativeTabs.ANCIENT_TIMES_TAB,
+            () -> new Item(new Item.Properties().stacksTo(16))
+    );
     public static final RegistryObject<Item> TRIOCLANTUS_SPAWN_EGG = registerWithCreativeModeTab("trioclantus_spawn_egg", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ForgeSpawnEggItem(ModEntities.TRIOCLANTUS, 0x835832, 0x668639, new Item.Properties()));
     public static final RegistryObject<Item> SCALEMOUFLIS_SPAWN_EGG = registerWithCreativeModeTab("scalemouflis_spawn_egg", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ForgeSpawnEggItem(ModEntities.SCALEMOUFLIS, 0x40643b, 0xa19a5e, new Item.Properties()));
     public static final RegistryObject<Item> RUMOROXL_SPAWN_EGG = registerWithCreativeModeTab("rumoroxl_spawn_egg", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ForgeSpawnEggItem(ModEntities.RUMOROXL, 0x6e1425, 0xed767b, new Item.Properties()));

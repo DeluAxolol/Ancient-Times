@@ -4,10 +4,7 @@ import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.registries.ModBlocks;
 import com.delu.ancienttimes.registries.ModItems;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -31,6 +28,38 @@ public class ModRecipeProvider extends RecipeProvider {
 
         slabBuilder(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MEAL_SLAB.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
         stairBuilder(ModBlocks.MEAL_STAIRS.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
+
+
+        // Recipe for crafting Diamond Chisel
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DIAMOND_CHISEL.get())
+                .pattern(" # ")
+                .pattern(" / ")
+                .pattern(" | ")
+                .define('#', Items.FLINT)
+                .define('/', Items.COPPER_INGOT)
+                .define('|', Items.STICK)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT))
+                .save(recipeGenerator, AncientTimes.modLoc("diamond_chisel"));
+
+        // Recipe for crafting Diamond Chisel
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get())
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModItems.RAVENHEADS_THORNS.get())
+                .unlockedBy("has_ravenheads_thorns", has(ModItems.RAVENHEADS_THORNS.get()))
+                .save(recipeGenerator, AncientTimes.modLoc("ravenheads_thornbush_block"));
+
+        // Recipe for crafting Magnifying Glass
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.MAGNIFYING_GLASS.get())
+                .pattern(" C ")
+                .pattern("C#C")
+                .pattern(" | ")
+                .define('C', Items.COPPER_INGOT)
+                .define('#', Items.GLASS_PANE)
+                .define('|', Items.STICK)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT))
+                .save(recipeGenerator, AncientTimes.modLoc("magnifying_glass"));
+
     }
 
 

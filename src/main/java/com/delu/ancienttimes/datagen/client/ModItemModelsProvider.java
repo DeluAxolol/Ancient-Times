@@ -1,6 +1,7 @@
 package com.delu.ancienttimes.datagen.client;
 
 import com.delu.ancienttimes.AncientTimes;
+import com.delu.ancienttimes.registries.ModBlocks;
 import com.delu.ancienttimes.registries.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
@@ -22,10 +23,12 @@ public class ModItemModelsProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simple(ModItems.MARD_FLOWER.get(), ModItems.MARD_BULB.get(), ModItems.RAVENHEAD_SEEDS.get(), ModItems.MAGNIFYING_GLASS.get(), ModItems.DIAMOND_CHISEL.get(), ModItems.RAVENHEADS_FRUIT.get(), ModItems.ROTTEN_RAVENHEADS_FRUIT.get());
+        simple(ModItems.MARD_FLOWER.get(), ModItems.MARD_BULB.get(), ModItems.RAVENHEAD_SEEDS.get(), ModItems.MAGNIFYING_GLASS.get(), ModItems.DIAMOND_CHISEL.get(), ModItems.RAVENHEADS_FRUIT.get(), ModItems.ROTTEN_RAVENHEADS_FRUIT.get(), ModItems.RAVENHEADS_THORNS.get());
         spawnEgg(ModItems.TRIOCLANTUS_SPAWN_EGG.get());
         spawnEgg(ModItems.SCALEMOUFLIS_SPAWN_EGG.get());
         spawnEgg(ModItems.RUMOROXL_SPAWN_EGG.get());
+        //simple(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get());
+
     }
 
     private void simple(Item... items) {

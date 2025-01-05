@@ -29,6 +29,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.LOGS).add(ModBlocks.MEAL_LOG.get());
         tag(BlockTags.LEAVES).add(ModBlocks.MEAL_LEAVES.get());
         tag(BlockTags.SAPLINGS).add(ModBlocks.MEAL_SAPLING.get());
+        tag(BlockTags.PLANKS).add(ModBlocks.MEAL_PLANKS.get());
         tag(BlockTags.STAIRS).add(ModBlocks.MEAL_STAIRS.get());
         tag(BlockTags.SLABS).add(ModBlocks.MEAL_SLAB.get());
         axe(

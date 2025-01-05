@@ -12,11 +12,15 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BrushableBlockEntity;
@@ -27,6 +31,9 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -44,6 +51,33 @@ public class ModBlocks {
 
     public static final RegistryObject<RavenheadSprouts> RAVENHEAD_SPROUTS = BLOCKS.register("ravenhead_sprouts",
             () -> new RavenheadSprouts(BlockBehaviour.Properties.copy(Blocks.WHEAT).mapColor(MapColor.PLANT).noOcclusion().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
+
+    public static final RegistryObject<Block> RAVENHEADS_THORNBUSH_BLOCK = registerWithTab("ravenheads_thornbush_block",
+            () -> new Block(BlockBehaviour.Properties.of().strength(0.5f).mapColor(MapColor.PLANT).noOcclusion().pushReaction(PushReaction.DESTROY)) {
+                protected static final VoxelShape COLLISION_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
+                protected static final VoxelShape OUTLINE_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+
+                @Override
+                public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+                    // Deal damage when an entity touches the block
+                    DamageSources damageSources = (level).damageSources();
+                    entity.hurt(damageSources.cactus(), 1.0F); // Adjust damage value (1.0F) as desired
+
+                    super.entityInside(state, level, pos, entity);
+                }
+                @Override
+                public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter level, BlockPos pos) {
+                    return false; // Block will act as a full block, so entities cannot pass through
+                }
+                public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+                    return COLLISION_SHAPE;
+                }
+
+                public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+                    return OUTLINE_SHAPE;
+                }
+
+            }, ModCreativeTabs.ANCIENT_TIMES_TAB);
 
 
     public static final RegistryObject<RotatedPillarBlock> MEAL_LOG = registerWithTab("meal_log", () -> log(MapColor.WOOD, MapColor.PODZOL), ModCreativeTabs.ANCIENT_TIMES_TAB);

@@ -16,10 +16,12 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -68,9 +70,11 @@ public class ModBlockLoot extends BlockLootSubProvider {
         this.add(ModBlocks.RAVENHEAD_SPROUTS.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(ModItems.RAVENHEADS_FRUIT.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 4)))
                                 .when(stage3Condition)))
                 .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(ModItems.ROTTEN_RAVENHEADS_FRUIT.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 4)))
                                 .when(stage4Condition)))
                 .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(ModItems.RAVENHEAD_SEEDS.get())
