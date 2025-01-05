@@ -30,7 +30,7 @@ public class RavenheadsFruitEntity extends ThrowableProjectile {
 
         if (!this.level().isClientSide) {
             // Create a small explosion on impact
-            this.level().explode(this, this.getX(), this.getY(), this.getZ(), 0.2F, Level.ExplosionInteraction.NONE);
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), 0.18F, Level.ExplosionInteraction.NONE);
 
             // Add particles for visual effect
             this.level().addParticle(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
@@ -48,7 +48,7 @@ public class RavenheadsFruitEntity extends ThrowableProjectile {
 
         if (!this.level().isClientSide) {
             // Optional: Deal damage to entities hit
-            entityHitResult.getEntity().hurt(this.damageSources().thrown(this, this.getOwner()), 5.0F);
+            entityHitResult.getEntity().hurt(this.damageSources().thrown(this, this.getOwner()), 3.0F);
         }
     }
 

@@ -148,6 +148,8 @@ public abstract class BetterLanguageProvider implements DataProvider {
                 return "Mealwood Sapling";
             case "meal_stairs":
                 return "Mealwood Stairs";
+            case "diamond_chisel":
+                return "Chisel";
             case "sus_andesite":
                 return "Sus Stone";
             default:

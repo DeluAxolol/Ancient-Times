@@ -6,10 +6,7 @@ import com.delu.ancienttimes.datagen.client.ModItemModelsProvider;
 import com.delu.ancienttimes.datagen.client.ModLanguageProvider;
 import com.delu.ancienttimes.datagen.client.ModParticleProvider;
 import com.delu.ancienttimes.datagen.client.ModWorldGenProvider;
-import com.delu.ancienttimes.datagen.server.ModBlockTagsProvider;
-import com.delu.ancienttimes.datagen.server.ModLoot;
-import com.delu.ancienttimes.datagen.server.ModLootModifierProvider;
-import com.delu.ancienttimes.datagen.server.ModRecipeProvider;
+import com.delu.ancienttimes.datagen.server.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -43,6 +40,8 @@ public class DataGenerator {
         gen.addProvider(event.includeClient(), new ModParticleProvider(output, helper));
 
         ModBlockTagsProvider provider = gen.addProvider(event.includeServer(), new ModBlockTagsProvider(output, event.getLookupProvider(), helper));
+        gen.addProvider(event.includeServer(), new ModItemTagsProvider(output, event.getLookupProvider(), provider.contentsGetter(), helper));
+
     }
 }
 
