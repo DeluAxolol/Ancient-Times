@@ -53,7 +53,7 @@ public class ModBlocks {
             () -> new RavenheadSprouts(BlockBehaviour.Properties.copy(Blocks.WHEAT).mapColor(MapColor.PLANT).noOcclusion().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
 
     public static final RegistryObject<Block> RAVENHEADS_THORNBUSH_BLOCK = registerWithTab("ravenheads_thornbush_block",
-            () -> new Block(BlockBehaviour.Properties.of().strength(0.5f).mapColor(MapColor.PLANT).noOcclusion().pushReaction(PushReaction.DESTROY)) {
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.WHEAT).strength(0.5f).mapColor(MapColor.PLANT).noOcclusion().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)) {
                 protected static final VoxelShape COLLISION_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
                 protected static final VoxelShape OUTLINE_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
@@ -76,6 +76,7 @@ public class ModBlocks {
                 public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
                     return OUTLINE_SHAPE;
                 }
+
 
             }, ModCreativeTabs.ANCIENT_TIMES_TAB);
 
