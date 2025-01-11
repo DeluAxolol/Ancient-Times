@@ -47,7 +47,8 @@ public class ModBlockLoot extends BlockLootSubProvider {
                 ModBlocks.MEAL_LEAVES,
                 ModBlocks.MEAL_SAPLING,
                 ModBlocks.MEAL_STAIRS,
-                ModBlocks.MEAL_SLAB
+                ModBlocks.MEAL_SLAB,
+                ModBlocks.RAVENHEADS_THORNBUSH_BLOCK
         );
     }
 
