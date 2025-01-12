@@ -15,14 +15,18 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cod;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -63,6 +67,7 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
 
     public Scalemouflis(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 1F, 1F, false);
     }
 
     @Override
@@ -102,14 +107,16 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
     @Override
     protected void registerGoals() {
         super.registerGoals();
+        //this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.9, false));
+        this.goalSelector.addGoal(2, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.1D));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.5D));
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 7.5f));
 
         this.targetSelector.addGoal(1,new NearestAttackableTargetGoal<>(this, Cod.class, 10, true, true, null));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        //this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     @Override
@@ -180,4 +187,55 @@ public class Scalemouflis extends Animal implements GeoEntity, NeutralMob {
             return Variant.values()[random.nextInt(Variant.values().length)];
         }
     }
+
+    @Override
+    protected PathNavigation createNavigation(Level level) {
+        return new AmphibiousPathNavigation(this, level);
+    }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
+
+    @Override
+    public void baseTick() {
+        this.setAirSupply(this.getMaxAirSupply());
+        super.baseTick();
+    }
+
+
+    @Override
+    public int getMaxAirSupply() {
+        return 1000; // Duration in ticks (300 = 15 seconds underwater without suffocating)
+    }
+
+    @Override
+    public boolean isPushedByFluid() {
+        return false; // Prevent the entity from being pushed by water currents
+    }
+
+    @Override
+    public boolean isInWater() {
+        return this.level().isWaterAt(this.blockPosition());
+    }
+
+    @Override
+    public boolean isSwimming() {
+        return this.isInWater();
+    }
+    public MobType getMobType() {
+        return MobType.WATER;
+    }
+    public void travel(Vec3 pTravelVector) {
+        if (this.isControlledByLocalInstance() && this.isInWater()) {
+            this.moveRelative(this.getSpeed(), pTravelVector);
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.9D));
+        } else {
+            super.travel(pTravelVector);
+        }
+
+    }
+
 }

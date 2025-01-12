@@ -13,6 +13,10 @@ public class TrioclantusModel extends GeoModel<Trioclantus> {
 
     @Override
     public ResourceLocation getTextureResource(Trioclantus animatable) {
+        if (animatable.hasCustomName() && "Christmas Tree".equals(animatable.getCustomName().getString())) {
+            // Use the Rudolph texture if the name is "Rudolph"
+            return AncientTimes.entityTexture("trioclantus/trioclantus_christmas_tree.png");
+        }
         return animatable.isBaby() ? AncientTimes.entityTexture("trioclantus/trioclantus_baby_texture.png") : AncientTimes.entityTexture("trioclantus/trioclantus_adult.png");
     }
 

@@ -13,6 +13,10 @@ public class ScalemouflisModel extends GeoModel<Scalemouflis> {
 
     @Override
     public ResourceLocation getTextureResource(Scalemouflis scalemouflis) {
+        if (scalemouflis.hasCustomName() && "Rudolph".equals(scalemouflis.getCustomName().getString())) {
+            // Use the Rudolph texture if the name is "Rudolph"
+            return AncientTimes.entityTexture("scalemouflis/scalemouflis_rudolph.png");
+        }
         return scalemouflis.getVariant().getTexture();
     }
 
