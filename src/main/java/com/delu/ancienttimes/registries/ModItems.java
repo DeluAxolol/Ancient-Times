@@ -45,6 +45,10 @@ public class ModItems {
     public static final RegistryObject<Item> SCALEMOUFLIS_SPAWN_EGG = registerWithCreativeModeTab("scalemouflis_spawn_egg", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ForgeSpawnEggItem(ModEntities.SCALEMOUFLIS, 0x40643b, 0xa19a5e, new Item.Properties()));
     public static final RegistryObject<Item> RUMOROXL_SPAWN_EGG = registerWithCreativeModeTab("rumoroxl_spawn_egg", ModCreativeTabs.ANCIENT_TIMES_TAB, () -> new ForgeSpawnEggItem(ModEntities.RUMOROXL, 0x6e1425, 0xed767b, new Item.Properties()));
 
+    public static final RegistryObject<Item> MEAL_SIGN = registerWithCreativeModeTab("meal_sign",ModCreativeTabs.ANCIENT_TIMES_TAB,
+            () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.MEAL_SIGN.get(), ModBlocks.MEAL_WALL_SIGN.get()));
+    public static final RegistryObject<Item> MEAL_HANGING_SIGN = registerWithCreativeModeTab("meal_hanging_sign",ModCreativeTabs.ANCIENT_TIMES_TAB,
+            () -> new HangingSignItem(ModBlocks.MEAL_HANGING_SIGN.get(), ModBlocks.MEAL_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> CREATIVE_TAB_LOGO = ITEMS.register("creative_tab_logo", () -> new Item(new Item.Properties()));
 
     public static <T extends Item> RegistryObject<T> registerWithCreativeModeTab(String name, Supplier<CreativeModeTab> creativeModeTab, Supplier<T> itemGenerator) {

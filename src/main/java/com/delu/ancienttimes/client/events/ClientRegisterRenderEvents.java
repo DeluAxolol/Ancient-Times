@@ -12,6 +12,8 @@ import com.delu.ancienttimes.registries.ModEntities;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.LivingEntity;
@@ -51,5 +53,9 @@ public class ClientRegisterRenderEvents {
     public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntityTypes.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntityTypes.CHISELABLE_BLOCK.get(), BrushableBlockRenderer::new);
+        
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.MOD_SIGN.get(), SignRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
+
     }
 }

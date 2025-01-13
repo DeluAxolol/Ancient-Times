@@ -36,8 +36,19 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         slabFromPlanks(ModBlocks.MEAL_SLAB.get(), ModBlocks.MEAL_PLANKS.get());
         makeRavenHeadSproutsModel((CropBlock) ModBlocks.RAVENHEAD_SPROUTS.get(), "ravenheadsprouts_stage", "ravenheadsprouts_stage");
         simpleBlockWithItem(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get(), existing(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get())); // Blockstate pointing to an existing model
-
+        signBlock(((StandingSignBlock) ModBlocks.MEAL_SIGN.get()), ((WallSignBlock) ModBlocks.MEAL_WALL_SIGN.get()),
+                blockTexture(ModBlocks.MEAL_PLANKS.get()));
+        hangingSignBlock(ModBlocks.MEAL_HANGING_SIGN.get(), ModBlocks.MEAL_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.MEAL_PLANKS.get()));
     }
+    public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
+        ModelFile sign = models().sign(name(signBlock), texture);
+        hangingSignBlock(signBlock, wallSignBlock, sign);
+    }
+    public void hangingSignBlock(Block signBlock, Block wallSignBlock, ModelFile sign) {
+        simpleBlock(signBlock, sign);
+        simpleBlock(wallSignBlock, sign);
+    }
+
 
     public void stairsFromPlanks(StairBlock stair, Block planks){
         stairsBlock(stair, blockTexture(planks));

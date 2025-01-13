@@ -50,6 +50,15 @@ public class ModBlockLoot extends BlockLootSubProvider {
                 ModBlocks.MEAL_SLAB,
                 ModBlocks.RAVENHEADS_THORNBUSH_BLOCK
         );
+        this.add(ModBlocks.MEAL_SIGN.get(), block ->
+                createSingleItemTable(ModItems.MEAL_SIGN.get()));
+        this.add(ModBlocks.MEAL_WALL_SIGN.get(), block ->
+                createSingleItemTable(ModItems.MEAL_SIGN.get()));
+        this.add(ModBlocks.MEAL_HANGING_SIGN.get(), block ->
+                createSingleItemTable(ModItems.MEAL_HANGING_SIGN.get()));
+        this.add(ModBlocks.MEAL_WALL_HANGING_SIGN.get(), block ->
+                createSingleItemTable(ModItems.MEAL_HANGING_SIGN.get()));
+
     }
 
     protected void makeBushBlocks() {
