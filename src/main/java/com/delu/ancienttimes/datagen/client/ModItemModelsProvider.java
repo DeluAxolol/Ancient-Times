@@ -33,7 +33,8 @@ public class ModItemModelsProvider extends ItemModelProvider {
         //simple(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get());
         simpleItem(ModItems.MEAL_SIGN);
         simpleItem(ModItems.MEAL_HANGING_SIGN);
-
+        simpleItem(ModItems.MEAL_BOAT);
+        simpleItem(ModItems.MEAL_CHEST_BOAT);
     }
 
     private void simple(Item... items) {
