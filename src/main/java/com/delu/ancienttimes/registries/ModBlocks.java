@@ -2,17 +2,18 @@ package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.common.block.*;
+import com.delu.ancienttimes.common.block.sign.ModHangingSignBlock;
+import com.delu.ancienttimes.common.block.sign.ModStandingSignBlock;
+import com.delu.ancienttimes.common.block.sign.ModWallHangingSignBlock;
+import com.delu.ancienttimes.common.block.sign.ModWallSignBlock;
 import com.delu.ancienttimes.common.tree.MealSapling;
 import com.delu.ancienttimes.common.tree.MealTreeGrower;
 
-import net.minecraft.client.resources.model.Material;
+import com.delu.ancienttimes.common.util.ModWoodTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -23,8 +24,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BrushableBlockEntity;
-import net.minecraft.world.level.block.grower.OakTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -32,7 +31,6 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -90,6 +88,16 @@ public class ModBlocks {
     public static final RegistryObject<SaplingBlock> MEAL_SAPLING = registerWithTab("meal_sapling", () -> new MealSapling(new MealTreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<SlabBlock> MEAL_SLAB = registerWithTab("meal_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<StairBlock> MEAL_STAIRS = registerWithTab("meal_stairs", () -> new StairBlock(() -> ModBlocks.MEAL_PLANKS.get().defaultBlockState() ,BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
+
+    public static final RegistryObject<Block> MEAL_SIGN = BLOCKS.register("meal_sign",
+            () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.MEAL));
+    public static final RegistryObject<Block> MEAL_WALL_SIGN = BLOCKS.register("meal_wall_sign",
+            () -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.MEAL));
+    public static final RegistryObject<Block> MEAL_HANGING_SIGN = BLOCKS.register("meal_hanging_sign",
+            () -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN), ModWoodTypes.MEAL));
+    public static final RegistryObject<Block> MEAL_WALL_HANGING_SIGN = BLOCKS.register("meal_wall_hanging_sign",
+            () -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN), ModWoodTypes.MEAL));
+
 
     // suspicious block
     public static final RegistryObject<Block> SUS_RED_SAND = registerWithTab("sus_red_sand",

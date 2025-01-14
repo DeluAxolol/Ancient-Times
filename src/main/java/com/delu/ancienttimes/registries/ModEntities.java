@@ -4,6 +4,8 @@ import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.common.entity.Rumoroxl;
 import com.delu.ancienttimes.common.entity.Scalemouflis;
 import com.delu.ancienttimes.common.entity.Trioclantus;
+import com.delu.ancienttimes.common.entity.custom.ModBoatEntity;
+import com.delu.ancienttimes.common.entity.custom.ModChestBoatEntity;
 import com.delu.ancienttimes.common.item.RavenheadsFruitEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -27,6 +29,14 @@ public class ModEntities {
                     .clientTrackingRange(8)
                     .updateInterval(10)
                     .build("ravenheads_fruit_entity"));
+
+    public static final RegistryObject<EntityType<ModBoatEntity>> MOD_BOAT =
+            ENTITIES.register("mod_boat", () -> EntityType.Builder.<ModBoatEntity>of(ModBoatEntity::new, MobCategory.MISC)
+                    .sized(1.375f, 0.5625f).build("mod_boat"));
+    public static final RegistryObject<EntityType<ModChestBoatEntity>> MOD_CHEST_BOAT =
+            ENTITIES.register("mod_chest_boat", () -> EntityType.Builder.<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC)
+                    .sized(1.375f, 0.5625f).build("mod_chest_boat"));
+
     public static <T extends Entity> RegistryObject<EntityType<T>> register(String name, Supplier<EntityType.Builder<T>> builder) {
         return ENTITIES.register(name, () -> builder.get().build(AncientTimes.modLoc(name).toString()));
     }

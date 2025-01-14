@@ -4,12 +4,15 @@ import com.delu.ancienttimes.AncientTimes;
 import com.delu.ancienttimes.registries.ModBlocks;
 import com.delu.ancienttimes.registries.ModItems;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItemModelsProvider extends ItemModelProvider {
     public final ModelFile generated = getExistingFile(mcLoc("item/generated"));
@@ -28,7 +31,10 @@ public class ModItemModelsProvider extends ItemModelProvider {
         spawnEgg(ModItems.SCALEMOUFLIS_SPAWN_EGG.get());
         spawnEgg(ModItems.RUMOROXL_SPAWN_EGG.get());
         //simple(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get());
-
+        simpleItem(ModItems.MEAL_SIGN);
+        simpleItem(ModItems.MEAL_HANGING_SIGN);
+        simpleItem(ModItems.MEAL_BOAT);
+        simpleItem(ModItems.MEAL_CHEST_BOAT);
     }
 
     private void simple(Item... items) {
@@ -43,7 +49,11 @@ public class ModItemModelsProvider extends ItemModelProvider {
             simple(itemProvider.asItem());
         }
     }
-
+    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(AncientTimes.MODID,"item/" + item.getId().getPath()));
+    }
     private void spawnEgg(Item... items) {
         for (Item item : items) {
             String name = ForgeRegistries.ITEMS.getKey(item).getPath();
