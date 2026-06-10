@@ -28,16 +28,18 @@ public class DataGenerator {
         PackOutput output = gen.getPackOutput();
         CompletableFuture<HolderLookup.Provider> holderLookup = event.getLookupProvider();
 
+        //client
         gen.addProvider(event.includeClient(), new ModItemModelsProvider(output, helper));
         gen.addProvider(event.includeClient(), new ModLanguageProvider(output));
         gen.addProvider(event.includeClient(), new ModBlockStatesProvider(output, helper));
+        gen.addProvider(event.includeClient(), new ModParticleProvider(output, helper));
 
         //server
         gen.addProvider(event.includeServer(), new ModLoot(output));
         gen.addProvider(event.includeServer(), new ModRecipeProvider(output));
         gen.addProvider(event.includeServer(), new ModLootModifierProvider(output));
         gen.addProvider(event.includeServer(), new ModWorldGenProvider(output, holderLookup));
-        gen.addProvider(event.includeClient(), new ModParticleProvider(output, helper));
+        gen.addProvider(event.includeServer(), new ModBiomeTagsProvider(output, holderLookup, helper));
 
         ModBlockTagsProvider provider = gen.addProvider(event.includeServer(), new ModBlockTagsProvider(output, event.getLookupProvider(), helper));
         gen.addProvider(event.includeServer(), new ModItemTagsProvider(output, event.getLookupProvider(), provider.contentsGetter(), helper));
