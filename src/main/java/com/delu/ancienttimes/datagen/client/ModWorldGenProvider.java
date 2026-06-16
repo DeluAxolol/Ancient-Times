@@ -1,10 +1,7 @@
 package com.delu.ancienttimes.datagen.client;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.registries.ModConfiguredFeatures;
-import com.delu.ancienttimes.registries.ModPlacedFeatures;
-import com.delu.ancienttimes.registries.ModStructurePools;
-import com.delu.ancienttimes.registries.ModStructures;
+import com.delu.ancienttimes.registries.*;
 import com.electronwill.nightconfig.core.CommentedConfig;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -20,6 +17,7 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.STRUCTURE, ModStructures::generate)
             .add(Registries.TEMPLATE_POOL, ModStructurePools::generate)
+            .add(Registries.STRUCTURE_SET, ModStructureSets::generate)
             ;
 
     public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
