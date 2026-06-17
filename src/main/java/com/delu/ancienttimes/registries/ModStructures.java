@@ -18,19 +18,49 @@ import java.util.Objects;
 
 public class ModStructures {
 
-    public static final ResourceKey<Structure> JUNGLE_RUIN_STRUCTURE = create("jungle_ruins");
+    public static final ResourceKey<Structure> JUNGLE_RUIN = create("jungle_ruins");
+    public static final ResourceKey<Structure> MUDDY_HUT = create("muddy_hut");
+    public static final ResourceKey<Structure> FROZEN_TOWER = create("frozen_tower");
 
 
 
     public static void generate(BootstapContext<Structure> ctx){
-        ctx.register(JUNGLE_RUIN_STRUCTURE, new JigsawStructure(
+        ctx.register(JUNGLE_RUIN, new JigsawStructure(
                 new Structure.StructureSettings(
                         ctx.lookup(Registries.BIOME).getOrThrow(ModTags.Biomes.JUNGLE_RUIN_CAN_SPAWN),
                         Map.of(),
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
                         TerrainAdjustment.BEARD_THIN
                 ),
-                ctx.lookup(Registries.TEMPLATE_POOL).getOrThrow(ModStructurePools.JUNGLE_RUINS_POOL),
+                ctx.lookup(Registries.TEMPLATE_POOL).getOrThrow(ModStructurePools.JUNGLE_RUINS),
+                7,
+                ConstantHeight.of(VerticalAnchor.absolute(0)),
+                false,
+                Heightmap.Types.WORLD_SURFACE_WG
+        ));
+
+        ctx.register(MUDDY_HUT, new JigsawStructure(
+                new Structure.StructureSettings(
+                        ctx.lookup(Registries.BIOME).getOrThrow(ModTags.Biomes.MUDDY_HUT_CAN_SPAWN),
+                        Map.of(),
+                        GenerationStep.Decoration.SURFACE_STRUCTURES,
+                        TerrainAdjustment.BEARD_THIN
+                ),
+                ctx.lookup(Registries.TEMPLATE_POOL).getOrThrow(ModStructurePools.MUDDY_HUT),
+                7,
+                ConstantHeight.of(VerticalAnchor.absolute(0)),
+                false,
+                Heightmap.Types.WORLD_SURFACE_WG
+        ));
+
+        ctx.register(FROZEN_TOWER, new JigsawStructure(
+                new Structure.StructureSettings(
+                        ctx.lookup(Registries.BIOME).getOrThrow(ModTags.Biomes.FROZEN_TOWER_CAN_SPAWN),
+                        Map.of(),
+                        GenerationStep.Decoration.SURFACE_STRUCTURES,
+                        TerrainAdjustment.BEARD_THIN
+                ),
+                ctx.lookup(Registries.TEMPLATE_POOL).getOrThrow(ModStructurePools.FROZEN_TOWER),
                 7,
                 ConstantHeight.of(VerticalAnchor.absolute(0)),
                 false,

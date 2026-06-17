@@ -20,5 +20,7 @@ public class ModBiomeTagsProvider extends BiomeTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(ModTags.Biomes.JUNGLE_RUIN_CAN_SPAWN).add(Biomes.JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE);
+        tag(ModTags.Biomes.MUDDY_HUT_CAN_SPAWN).add(Biomes.MANGROVE_SWAMP, Biomes.SWAMP);
+        tag(ModTags.Biomes.FROZEN_TOWER_CAN_SPAWN).add(Biomes.FROZEN_PEAKS, Biomes.ICE_SPIKES, Biomes.SNOWY_TAIGA, Biomes.SNOWY_PLAINS);
     }
 }

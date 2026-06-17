@@ -14,13 +14,24 @@ import java.util.Objects;
 public class ModStructureSets {
 
 
+    public static final ResourceKey<StructureSet> JUNGLE_RUINS = create("jungle_ruins");
+    public static final ResourceKey<StructureSet> MUDDY_HUT = create("muddy_hut");
+    public static final ResourceKey<StructureSet> FROZEN_TOWER = create("frozen_tower");
 
-    public static final ResourceKey<StructureSet> JUNGLE_RUINS_SET = create("jungle_ruins_set");
-
-    public static void generate(BootstapContext<StructureSet> ctx){
-        ctx.register(JUNGLE_RUINS_SET, new StructureSet(
-                ctx.lookup(Registries.STRUCTURE).getOrThrow(ModStructures.JUNGLE_RUIN_STRUCTURE),
+    public static void generate(BootstapContext<StructureSet> ctx) {
+        ctx.register(JUNGLE_RUINS, new StructureSet(
+                ctx.lookup(Registries.STRUCTURE).getOrThrow(ModStructures.JUNGLE_RUIN),
                 new RandomSpreadStructurePlacement(30, 15, RandomSpreadType.LINEAR, 342342)
+        ));
+
+        ctx.register(MUDDY_HUT, new StructureSet(
+                ctx.lookup(Registries.STRUCTURE).getOrThrow(ModStructures.MUDDY_HUT),
+                new RandomSpreadStructurePlacement(30, 15, RandomSpreadType.LINEAR, 182840)
+        ));
+
+        ctx.register(FROZEN_TOWER, new StructureSet(
+                ctx.lookup(Registries.STRUCTURE).getOrThrow(ModStructures.FROZEN_TOWER),
+                new RandomSpreadStructurePlacement(30, 15, RandomSpreadType.LINEAR, 193750)
         ));
     }
 
