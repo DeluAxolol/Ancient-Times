@@ -56,6 +56,7 @@ public class AncientTimes {
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModParticles.PARTICLES.register(modEventBus);
         ModStructureTypes.STRUCTURE_TYPES.register(modEventBus);
+        ModRuleTests.RULE_TEXT_TYPES.register(modEventBus);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);

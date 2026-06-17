@@ -18,6 +18,7 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.STRUCTURE, ModStructures::generate)
             .add(Registries.TEMPLATE_POOL, ModStructurePools::generate)
             .add(Registries.STRUCTURE_SET, ModStructureSets::generate)
+            .add(Registries.PROCESSOR_LIST, ModStructureProcessorLists::generate)
             ;
 
     public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
