@@ -25,14 +25,14 @@ public class ModStructureProcessorLists {
                 new RuleProcessor(
                         List.of(
                                 new ProcessorRule(
-                                        new RandomTagMatch(BlockTags.STONE_BRICKS, 0.3f),
-                                        AlwaysTrueTest.INSTANCE,
-                                        ModBlocks.SUS_RED_SAND.get().defaultBlockState()
-                                ),
-                                new ProcessorRule(
                                         new RandomBlockMatchTest(Blocks.DIRT, 0.3f),
                                         AlwaysTrueTest.INSTANCE,
-                                        ModBlocks.SUS_DIRT.get().defaultBlockState()
+                                        ModBlocks.SUSPICIOUS_DIRT.get().defaultBlockState()
+                                ),
+                                new ProcessorRule(
+                                        new RandomBlockMatchTest(Blocks.GRASS_BLOCK, 0.3f),
+                                        AlwaysTrueTest.INSTANCE,
+                                        ModBlocks.SUSPICIOUS_DIRT.get().defaultBlockState()
                                 )
                         )
                 )
@@ -44,12 +44,17 @@ public class ModStructureProcessorLists {
                                 new ProcessorRule(
                                         new RandomBlockMatchTest(Blocks.MUD, 0.3f),
                                         AlwaysTrueTest.INSTANCE,
-                                        ModBlocks.SUS_MUD.get().defaultBlockState()
+                                        ModBlocks.SUSPICIOUS_MUD.get().defaultBlockState()
                                 ),
                                 new ProcessorRule(
                                         new RandomBlockMatchTest(Blocks.DIRT, 0.3f),
                                         AlwaysTrueTest.INSTANCE,
-                                        ModBlocks.SUS_DIRT.get().defaultBlockState()
+                                        ModBlocks.SUSPICIOUS_DIRT.get().defaultBlockState()
+                                ),
+                                new ProcessorRule(
+                                        new RandomBlockMatchTest(Blocks.GRASS_BLOCK, 0.3f),
+                                        AlwaysTrueTest.INSTANCE,
+                                        ModBlocks.SUSPICIOUS_DIRT.get().defaultBlockState()
                                 )
                         )
                 )
@@ -61,12 +66,12 @@ public class ModStructureProcessorLists {
                                 new ProcessorRule(
                                         new RandomBlockMatchTest(Blocks.SNOW_BLOCK, 0.3f),
                                         AlwaysTrueTest.INSTANCE,
-                                        ModBlocks.SUS_SNOW.get().defaultBlockState()
+                                        ModBlocks.SUSPICIOUS_SNOW.get().defaultBlockState()
                                 ),
                                 new ProcessorRule(
                                         new RandomBlockMatchTest(Blocks.DIRT, 0.3f),
                                         AlwaysTrueTest.INSTANCE,
-                                        ModBlocks.SUS_DIRT.get().defaultBlockState()
+                                        ModBlocks.SUSPICIOUS_DIRT.get().defaultBlockState()
                                 )
                         )
                 )

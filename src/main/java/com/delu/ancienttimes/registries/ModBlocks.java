@@ -100,12 +100,12 @@ public class ModBlocks {
 
 
     // suspicious block
-    public static final RegistryObject<Block> SUS_RED_SAND = registerWithTab("sus_red_sand",
+    public static final RegistryObject<Block> SUSPICIOUS_RED_SAND = registerWithTab("suspicious_red_sand",
             () -> new BrushableBlock(Blocks.RED_SAND, BlockBehaviour.Properties.copy(Blocks.SUSPICIOUS_SAND)
 
             .sound(SoundType.SAND), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
-    public static final RegistryObject<Block> SUS_ANDESITE = registerWithTab("sus_andesite",
+    public static final RegistryObject<Block> SUSPICIOUS_ANDESITE = registerWithTab("suspicious_andesite",
             () -> new BrushableBlockWithoutFall(Blocks.STONE, BlockBehaviour.Properties.copy(Blocks.STONE)
             , SoundEvents.STONE_BREAK, SoundEvents.STONE_BREAK) {
                 @Override
@@ -115,22 +115,22 @@ public class ModBlocks {
             }, ModCreativeTabs.ANCIENT_TIMES_TAB);
 
 
-    public static final RegistryObject<Block> SUS_CLAY = registerWithTab("sus_clay",
+    public static final RegistryObject<Block> SUSPICIOUS_CLAY = registerWithTab("suspicious_clay",
             () -> new BrushableBlockWithoutFall(Blocks.CLAY, BlockBehaviour.Properties.copy(Blocks.CLAY)
             , SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
 
-    public static final RegistryObject<Block> SUS_DIRT = registerWithTab("sus_dirt",
+    public static final RegistryObject<Block> SUSPICIOUS_DIRT = registerWithTab("suspicious_dirt",
             () -> new BrushableBlockWithoutFall(Blocks.DIRT, BlockBehaviour.Properties.copy(Blocks.DIRT)
            , SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
 
-    public static final RegistryObject<Block> SUS_MUD = registerWithTab("sus_mud",
+    public static final RegistryObject<Block> SUSPICIOUS_MUD = registerWithTab("suspicious_mud",
             () -> new BrushableBlockWithoutFall(Blocks.MUD, BlockBehaviour.Properties.copy(Blocks.MUD)
             , SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
 
-    public static final RegistryObject<Block> SUS_SNOW = registerWithTab("sus_snow",
+    public static final RegistryObject<Block> SUSPICIOUS_SNOW = registerWithTab("suspicious_snow",
             () -> new BrushableBlockWithoutFall(Blocks.SNOW_BLOCK, BlockBehaviour.Properties.copy(Blocks.SNOW_BLOCK)
             , SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
