@@ -43,8 +43,8 @@ public class ModStructurePools {
         ctx.register(MUDDY_HUT, new StructureTemplatePool(
                 empty,
                 List.of(
-                        Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("muddy_hut").toString(), muddyHutProcessorList), 1),
-                        Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("muddy_hut_2").toString(), muddyHutProcessorList), 1)
+                        Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("muddy_hut_small").toString(), muddyHutProcessorList), 1),
+                        Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("muddy_hut_big").toString(), muddyHutProcessorList), 1)
                 ),
                 StructureTemplatePool.Projection.RIGID
         ));
