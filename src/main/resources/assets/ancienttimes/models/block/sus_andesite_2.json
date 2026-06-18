@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "ancienttimes:block/sus_andesite_2"
-  }
-}

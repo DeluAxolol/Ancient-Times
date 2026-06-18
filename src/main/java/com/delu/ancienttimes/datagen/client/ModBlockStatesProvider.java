@@ -14,6 +14,7 @@ import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 public class ModBlockStatesProvider extends BlockStateProvider {
@@ -39,34 +40,69 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         signBlock(((StandingSignBlock) ModBlocks.MEAL_SIGN.get()), ((WallSignBlock) ModBlocks.MEAL_WALL_SIGN.get()),
                 blockTexture(ModBlocks.MEAL_PLANKS.get()));
         hangingSignBlock(ModBlocks.MEAL_HANGING_SIGN.get(), ModBlocks.MEAL_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.MEAL_PLANKS.get()));
+
+        makeSuspiciousBlock(ModBlocks.SUSPICIOUS_CLAY.get(), "sus_clay");
+        makeSuspiciousBlock(ModBlocks.SUSPICIOUS_SNOW.get(), "sus_snow");
+        makeSuspiciousBlock(ModBlocks.SUSPICIOUS_MUD.get(), "sus_mud");
+        makeSuspiciousBlock(ModBlocks.SUSPICIOUS_DIRT.get(), "sus_dirt");
+        makeSuspiciousBlock(ModBlocks.SUSPICIOUS_STONE.get(), "sus_stone");
+        makeSuspiciousBlock(ModBlocks.SUSPICIOUS_RED_SAND.get(), "sus_red_sand");
     }
+
+    public void makeSuspiciousBlock(Block block) {
+        makeSuspiciousBlock(block, Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath());
+    }
+
+
+    public void makeSuspiciousBlock(Block block, String baseTextureName) {
+        makeSuspiciousBlock(block, Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath(), baseTextureName);
+    }
+    public void makeSuspiciousBlock(Block block, String baseModelName, String baseTextureName) {
+        getVariantBuilder(block).forAllStates(blockState -> {
+            int brushState = blockState.getValue(BlockStateProperties.DUSTED);
+            var modelName = baseModelName + "_" + brushState;
+            var textureName = baseTextureName + "_" + brushState;
+            var model = models().cubeAll(modelName, AncientTimes.modLoc("block/" + textureName));
+
+            if (brushState == 0){
+                simpleBlockItem(block, model);
+            }
+
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
+
+    }
+
+
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
         ModelFile sign = models().sign(name(signBlock), texture);
         hangingSignBlock(signBlock, wallSignBlock, sign);
     }
+
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ModelFile sign) {
         simpleBlock(signBlock, sign);
         simpleBlock(wallSignBlock, sign);
     }
 
 
-    public void stairsFromPlanks(StairBlock stair, Block planks){
+    public void stairsFromPlanks(StairBlock stair, Block planks) {
         stairsBlock(stair, blockTexture(planks));
         simpleBlockItem(stair, existing(stair));
     }
 
-    public void slabFromPlanks(SlabBlock slab, Block planks){
+    public void slabFromPlanks(SlabBlock slab, Block planks) {
         slabBlock(slab, blockTexture(planks), blockTexture(planks));
         simpleBlockItem(slab, existing(slab));
     }
 
 
-    public void makeTrapdoor(TrapDoorBlock trapdoor){
+    public void makeTrapdoor(TrapDoorBlock trapdoor) {
         ResourceLocation name = blockTexture(trapdoor);
         trapdoorBlockWithRenderType(trapdoor, name, true, mcLoc("cutout"));
         simpleBlockItem(trapdoor, models().getExistingFile(ResourceLocationUtils.extend(key(trapdoor), "_bottom")));
     }
-    public void makeDoor(DoorBlock door){
+
+    public void makeDoor(DoorBlock door) {
         ResourceLocation name = blockTexture(door);
         doorBlock(door, ResourceLocationUtils.extend(name, "_bot"), ResourceLocationUtils.extend(name, "_top"));
         itemModels().basicItem(door.asItem());
@@ -76,13 +112,13 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         simpleBlockWithItem(block, cubeAll(block));
     }
 
-    protected void sapling(Block sapling){
+    protected void sapling(Block sapling) {
         ResourceLocation saplingTexture = blockTexture(sapling);
         simpleBlock(sapling, models().cross(key(sapling).getPath(), saplingTexture).renderType(mcLoc("cutout")));
         basicItem(sapling);
     }
 
-    protected void axisWithItem(RotatedPillarBlock block){
+    protected void axisWithItem(RotatedPillarBlock block) {
         ResourceLocation name = blockTexture(block);
         axisBlock(block, ResourceLocationUtils.extend(name, "_side"), ResourceLocationUtils.extend(name, "_top"));
         simpleBlockItem(block, existing(block));
@@ -112,8 +148,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         return models;
     }
 
-    public void basicItem(Block item)
-    {
+    public void basicItem(Block item) {
         ResourceLocation key = key(item);
         itemModels().getBuilder(key.toString())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
