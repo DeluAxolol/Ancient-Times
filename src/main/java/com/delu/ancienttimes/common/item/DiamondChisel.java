@@ -1,5 +1,6 @@
 package com.delu.ancienttimes.common.item;
 
+import com.delu.ancienttimes.common.tags.ModTags;
 import com.delu.ancienttimes.registries.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -38,11 +39,8 @@ public class DiamondChisel extends BrushItem {
         BlockPos pos = context.getClickedPos();
         BlockState blockState = level.getBlockState(pos);
 
-        // Define the block you want to allow the interaction with
-        Block targetBlock = ModBlocks.SUS_ANDESITE.get(); // Replace with your specific block
-
         // Check if the block being interacted with is the target block
-        if (blockState.getBlock() == targetBlock) {
+        if (blockState.is(ModTags.Blocks.SUSPICIOUS_BLOCKS)) {
             Player player = context.getPlayer();
             if (player != null ) {
                 player.startUsingItem(context.getHand());

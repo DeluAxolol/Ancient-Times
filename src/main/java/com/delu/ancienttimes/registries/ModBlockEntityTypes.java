@@ -14,8 +14,8 @@ public class ModBlockEntityTypes {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, AncientTimes.MODID);
 
-    public static final RegistryObject<BlockEntityType<BrushableBlockEntity>> BRUSHABLE_BLOCK = BLOCK_ENTITY_TYPES.register("brushable_block", () -> BlockEntityType.Builder.of(BrushableBlockEntity::new, ModBlocks.SUS_RED_SAND.get(), ModBlocks.SUS_CLAY.get(), ModBlocks.SUS_DIRT.get(), ModBlocks.SUS_MUD.get(), ModBlocks.SUS_SNOW.get()).build(null));
-    public static final RegistryObject<BlockEntityType<ChiselableBlockEntity>> CHISELABLE_BLOCK = BLOCK_ENTITY_TYPES.register("chiselable_block", () -> BlockEntityType.Builder.of(ChiselableBlockEntity::new, ModBlocks.SUS_ANDESITE.get()).build(null));
+    public static final RegistryObject<BlockEntityType<BrushableBlockEntity>> BRUSHABLE_BLOCK = BLOCK_ENTITY_TYPES.register("brushable_block", () -> BlockEntityType.Builder.of(BrushableBlockEntity::new, ModBlocks.SUSPICIOUS_RED_SAND.get(), ModBlocks.SUSPICIOUS_CLAY.get(), ModBlocks.SUSPICIOUS_DIRT.get(), ModBlocks.SUSPICIOUS_MUD.get(), ModBlocks.SUSPICIOUS_SNOW.get()).build(null));
+    public static final RegistryObject<BlockEntityType<ChiselableBlockEntity>> CHISELABLE_BLOCK = BLOCK_ENTITY_TYPES.register("chiselable_block", () -> BlockEntityType.Builder.of(ChiselableBlockEntity::new, ModBlocks.SUSPICIOUS_STONE.get()).build(null));
     public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> MOD_SIGN =
             BLOCK_ENTITY_TYPES.register("mod_sign", () ->
                     BlockEntityType.Builder.of(ModSignBlockEntity::new,

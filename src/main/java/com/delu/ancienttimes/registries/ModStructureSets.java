@@ -17,6 +17,7 @@ public class ModStructureSets {
     public static final ResourceKey<StructureSet> JUNGLE_RUINS = create("jungle_ruins");
     public static final ResourceKey<StructureSet> MUDDY_HUT = create("muddy_hut");
     public static final ResourceKey<StructureSet> FROZEN_TOWER = create("frozen_tower");
+    public static final ResourceKey<StructureSet> DRIED_RIVER_RUINED_WHEEL = create("dried_river_ruined_wheel");
 
     public static void generate(BootstapContext<StructureSet> ctx) {
         ctx.register(JUNGLE_RUINS, new StructureSet(
@@ -32,6 +33,10 @@ public class ModStructureSets {
         ctx.register(FROZEN_TOWER, new StructureSet(
                 ctx.lookup(Registries.STRUCTURE).getOrThrow(ModStructures.FROZEN_TOWER),
                 new RandomSpreadStructurePlacement(30, 15, RandomSpreadType.LINEAR, 193750)
+        ));
+        ctx.register(DRIED_RIVER_RUINED_WHEEL, new StructureSet(
+                ctx.lookup(Registries.STRUCTURE).getOrThrow(ModStructures.DIRED_RIVER_RUINED_WHEEL),
+                new RandomSpreadStructurePlacement(30, 15, RandomSpreadType.LINEAR, 7648798)
         ));
     }
 

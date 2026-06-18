@@ -105,7 +105,7 @@ public class ModBlocks {
 
             .sound(SoundType.SAND), SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
-    public static final RegistryObject<Block> SUSPICIOUS_ANDESITE = registerWithTab("suspicious_andesite",
+    public static final RegistryObject<Block> SUSPICIOUS_STONE = registerWithTab("suspicious_stone",
             () -> new BrushableBlockWithoutFall(Blocks.STONE, BlockBehaviour.Properties.copy(Blocks.STONE)
             , SoundEvents.STONE_BREAK, SoundEvents.STONE_BREAK) {
                 @Override

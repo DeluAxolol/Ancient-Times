@@ -41,13 +41,28 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModBlocks.MEAL_STAIRS,
                 ModBlocks.MEAL_SLAB
         );
-        shovel(ModBlocks.SUS_RED_SAND,
-                ModBlocks.SUS_CLAY,
-                ModBlocks.SUS_DIRT,
-                ModBlocks.SUS_MUD,
-                ModBlocks.SUS_SNOW
+        shovel(ModBlocks.SUSPICIOUS_RED_SAND,
+                ModBlocks.SUSPICIOUS_CLAY,
+                ModBlocks.SUSPICIOUS_DIRT,
+                ModBlocks.SUSPICIOUS_MUD,
+                ModBlocks.SUSPICIOUS_SNOW
         );
-        pickaxe(ModBlocks.SUS_ANDESITE);
+        pickaxe(ModBlocks.SUSPICIOUS_STONE);
+
+
+
+        tag(ModTags.Blocks.SUSPICIOUS_BLOCKS).add(
+                Blocks.SUSPICIOUS_SAND,
+                Blocks.SUSPICIOUS_GRAVEL,
+                ModBlocks.SUSPICIOUS_CLAY.get(),
+                ModBlocks.SUSPICIOUS_DIRT.get(),
+                ModBlocks.SUSPICIOUS_MUD.get(),
+                ModBlocks.SUSPICIOUS_SNOW.get(),
+                ModBlocks.SUSPICIOUS_STONE.get(),
+                ModBlocks.SUSPICIOUS_RED_SAND.get()
+        );
+
+        tag(ModTags.Blocks.MAGNIFYING_GLASS_CAN_DETECT).addTags(ModTags.Blocks.SUSPICIOUS_BLOCKS);
     }
 
     public void pickaxe(Supplier<? extends Block>... blocks) {

@@ -1,5 +1,6 @@
 package com.delu.ancienttimes.common.item;
 
+import com.delu.ancienttimes.common.tags.ModTags;
 import com.delu.ancienttimes.registries.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -44,12 +45,12 @@ public class MagnifyingGlass extends Item {
         // Schedule particle effects for 200 ticks
         for (int tick = 0; tick < 200; tick++) {
             final int delay = tick; // Capture delay for scheduling
-            serverLevel.scheduleTick(playerPos, ModBlocks.SUS_ANDESITE.get(), delay);
+            serverLevel.scheduleTick(playerPos, ModBlocks.SUSPICIOUS_STONE.get(), delay);
 
             // Logic to execute on each scheduled tick
             serverLevel.getBlockTicks().schedule(
                     new ScheduledTick<>(
-                            ModBlocks.SUS_ANDESITE.get(), // Dummy block type
+                            ModBlocks.SUSPICIOUS_STONE.get(), // Dummy block type
                             playerPos,
                             level.getGameTime() + delay, // Trigger time
                             TickPriority.NORMAL, // Priority
@@ -64,14 +65,7 @@ public class MagnifyingGlass extends Item {
                     BlockState blockState = level.getBlockState(pos);
 
                     // Check for specific block types
-                    if (blockState.is(ModBlocks.SUS_ANDESITE.get())
-                            || blockState.is(ModBlocks.SUS_CLAY.get())
-                            || blockState.is(ModBlocks.SUS_DIRT.get())
-                            || blockState.is(ModBlocks.SUS_SNOW.get())
-                            || blockState.is(Blocks.SUSPICIOUS_SAND)
-                            || blockState.is(Blocks.SUSPICIOUS_GRAVEL)
-                            || blockState.is(ModBlocks.SUS_MUD.get())
-                            || blockState.is(ModBlocks.SUS_RED_SAND.get())) {
+                    if (blockState.is(ModTags.Blocks.MAGNIFYING_GLASS_CAN_DETECT)){
                         serverLevel.sendParticles(
                                 net.minecraft.core.particles.ParticleTypes.GLOW,
                                 pos.getX() + 0.5,

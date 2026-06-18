@@ -1,5 +1,6 @@
 package com.delu.ancienttimes.registries;
 
+import com.delu.ancienttimes.common.tags.ModTags;
 import com.delu.ancienttimes.AncientTimes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -21,6 +22,7 @@ public class ModStructures {
     public static final ResourceKey<Structure> JUNGLE_RUIN = create("jungle_ruins");
     public static final ResourceKey<Structure> MUDDY_HUT = create("muddy_hut");
     public static final ResourceKey<Structure> FROZEN_TOWER = create("frozen_tower");
+    public static final ResourceKey<Structure> DIRED_RIVER_RUINED_WHEEL = create("dried_river_ruined_wheel");
 
 
 
@@ -63,6 +65,20 @@ public class ModStructures {
                 ctx.lookup(Registries.TEMPLATE_POOL).getOrThrow(ModStructurePools.FROZEN_TOWER),
                 7,
                 ConstantHeight.of(VerticalAnchor.absolute(0)),
+                false,
+                Heightmap.Types.WORLD_SURFACE_WG
+        ));
+
+        ctx.register(DIRED_RIVER_RUINED_WHEEL, new JigsawStructure(
+                new Structure.StructureSettings(
+                        ctx.lookup(Registries.BIOME).getOrThrow(ModTags.Biomes.DRIED_RIVER_RUINED_WHEEL_CAN_SPAWN),
+                        Map.of(),
+                        GenerationStep.Decoration.SURFACE_STRUCTURES,
+                        TerrainAdjustment.BEARD_THIN
+                ),
+                ctx.lookup(Registries.TEMPLATE_POOL).getOrThrow(ModStructurePools.DRIED_RIVER_RUINED_WHEEL_LEFT),
+                7,
+                ConstantHeight.of(VerticalAnchor.absolute(-3)),
                 false,
                 Heightmap.Types.WORLD_SURFACE_WG
         ));

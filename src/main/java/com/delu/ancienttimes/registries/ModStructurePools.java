@@ -23,13 +23,19 @@ public class ModStructurePools {
     public static final ResourceKey<StructureTemplatePool> MUDDY_HUT = create("muddy_hut");
     public static final ResourceKey<StructureTemplatePool> FROZEN_TOWER = create("frozen_tower");
 
-    public static void generate(BootstapContext<StructureTemplatePool> ctx){
+
+    public static final ResourceKey<StructureTemplatePool> DRIED_RIVER_RUINED_WHEEL_LEFT = create("dried_river_ruined_wheel_left");
+    //don't change this name, cause this is hardcoded inside the jigsaw block inside the left structure
+    public static final ResourceKey<StructureTemplatePool> DRIED_RIVER_RUINED_WHEEL_RIGHT = create("dried_river_ruined_wheel_right");
+
+    public static void generate(BootstapContext<StructureTemplatePool> ctx) {
         HolderGetter<StructureTemplatePool> holderGetter = ctx.lookup(Registries.TEMPLATE_POOL);
         HolderGetter<StructureProcessorList> structureProcessorListHolderGetter = ctx.lookup(Registries.PROCESSOR_LIST);
         Holder<StructureTemplatePool> empty = holderGetter.getOrThrow(Pools.EMPTY);
 
         var jungleRuinProcessorList = structureProcessorListHolderGetter.getOrThrow(ModStructureProcessorLists.JUNGLE_RUIN_PROCESSORS);
         var muddyHutProcessorList = structureProcessorListHolderGetter.getOrThrow(ModStructureProcessorLists.MUDDY_HUT_PROCESSORS);
+        var driedRiverRuinedWheelProcessorList = structureProcessorListHolderGetter.getOrThrow(ModStructureProcessorLists.MUDDY_HUT_PROCESSORS);
 
         ctx.register(JUNGLE_RUINS, new StructureTemplatePool(
                 empty,
@@ -54,6 +60,20 @@ public class ModStructurePools {
                 List.of(
                         Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("frozen_tower_small").toString(), muddyHutProcessorList), 5),
                         Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("frozen_tower_big").toString(), muddyHutProcessorList), 1)
+                ),
+                StructureTemplatePool.Projection.RIGID
+        ));
+        ctx.register(DRIED_RIVER_RUINED_WHEEL_LEFT, new StructureTemplatePool(
+                empty,
+                List.of(
+                        Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("dried_river_ruined_wheel_left").toString(), driedRiverRuinedWheelProcessorList), 1)
+                ),
+                StructureTemplatePool.Projection.RIGID
+        ));
+        ctx.register(DRIED_RIVER_RUINED_WHEEL_RIGHT, new StructureTemplatePool(
+                empty,
+                List.of(
+                        Pair.of(StructurePoolElement.legacy(AncientTimes.modLoc("dried_river_ruined_wheel_right").toString(), driedRiverRuinedWheelProcessorList), 1)
                 ),
                 StructureTemplatePool.Projection.RIGID
         ));
