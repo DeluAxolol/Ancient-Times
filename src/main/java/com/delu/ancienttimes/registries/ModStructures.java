@@ -74,7 +74,7 @@ public class ModStructures {
                         ctx.lookup(Registries.BIOME).getOrThrow(ModTags.Biomes.DRIED_RIVER_RUINED_WHEEL_CAN_SPAWN),
                         Map.of(),
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
-                        TerrainAdjustment.BEARD_THIN
+                        TerrainAdjustment.BEARD_BOX
                 ),
                 ctx.lookup(Registries.TEMPLATE_POOL).getOrThrow(ModStructurePools.DRIED_RIVER_RUINED_WHEEL_LEFT),
                 7,
