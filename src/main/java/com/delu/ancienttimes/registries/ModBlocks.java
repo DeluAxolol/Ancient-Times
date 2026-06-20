@@ -88,6 +88,9 @@ public class ModBlocks {
     public static final RegistryObject<SaplingBlock> MEAL_SAPLING = registerWithTab("meal_sapling", () -> new MealSapling(new MealTreeGrower(), BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<SlabBlock> MEAL_SLAB = registerWithTab("meal_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
     public static final RegistryObject<StairBlock> MEAL_STAIRS = registerWithTab("meal_stairs", () -> new StairBlock(() -> ModBlocks.MEAL_PLANKS.get().defaultBlockState() ,BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
+    public static final RegistryObject<FenceBlock> MEAL_FENCE = registerWithTab("meal_fence", () -> new FenceBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get())), ModCreativeTabs.ANCIENT_TIMES_TAB);
+    public static final RegistryObject<FenceGateBlock> MEAL_FENCE_GATE = registerWithTab("meal_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get()), SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE), ModCreativeTabs.ANCIENT_TIMES_TAB);
+    public static final RegistryObject<ButtonBlock> MEAL_BUTTON = registerWithTab("meal_button", () -> new ButtonBlock(BlockBehaviour.Properties.copy(ModBlocks.MEAL_PLANKS.get()), BlockSetType.OAK, 30, true), ModCreativeTabs.ANCIENT_TIMES_TAB);
 
     public static final RegistryObject<Block> MEAL_SIGN = BLOCKS.register("meal_sign",
             () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.MEAL));

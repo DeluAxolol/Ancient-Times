@@ -35,6 +35,10 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         makeTrapdoor(ModBlocks.MEAL_TRAPDOOR.get());
         stairsFromPlanks(ModBlocks.MEAL_STAIRS.get(), ModBlocks.MEAL_PLANKS.get());
         slabFromPlanks(ModBlocks.MEAL_SLAB.get(), ModBlocks.MEAL_PLANKS.get());
+        fenceFromPlanks(ModBlocks.MEAL_FENCE.get(), ModBlocks.MEAL_PLANKS.get());
+        fenceGateFromPlanks(ModBlocks.MEAL_FENCE_GATE.get(), ModBlocks.MEAL_PLANKS.get());
+        buttonFromPlanks(ModBlocks.MEAL_BUTTON.get(), ModBlocks.MEAL_PLANKS.get());
+
         makeRavenHeadSproutsModel((CropBlock) ModBlocks.RAVENHEAD_SPROUTS.get(), "ravenheadsprouts_stage", "ravenheadsprouts_stage");
         simpleBlockWithItem(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get(), existing(ModBlocks.RAVENHEADS_THORNBUSH_BLOCK.get())); // Blockstate pointing to an existing model
         signBlock(((StandingSignBlock) ModBlocks.MEAL_SIGN.get()), ((WallSignBlock) ModBlocks.MEAL_WALL_SIGN.get()),
@@ -82,6 +86,21 @@ public class ModBlockStatesProvider extends BlockStateProvider {
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ModelFile sign) {
         simpleBlock(signBlock, sign);
         simpleBlock(wallSignBlock, sign);
+    }
+
+    public void fenceFromPlanks(FenceBlock stair, Block planks) {
+        fenceBlock(stair, blockTexture(planks));
+        simpleBlockItem(stair, models().fenceInventory(name(stair) + "_inventory", blockTexture(planks)));
+    }
+
+    public void fenceGateFromPlanks(FenceGateBlock stair, Block planks) {
+        fenceGateBlock(stair, blockTexture(planks));
+        simpleBlockItem(stair, existing(stair));
+    }
+
+    public void buttonFromPlanks(ButtonBlock stair, Block planks) {
+        buttonBlock(stair, blockTexture(planks));
+        simpleBlockItem(stair, models().buttonInventory(name(stair) + "_inventory", blockTexture(planks)));
     }
 
 

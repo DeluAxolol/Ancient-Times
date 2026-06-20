@@ -63,6 +63,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         );
 
         tag(ModTags.Blocks.MAGNIFYING_GLASS_CAN_DETECT).addTags(ModTags.Blocks.SUSPICIOUS_BLOCKS);
+        tag(BlockTags.WOODEN_FENCES).add(ModBlocks.MEAL_FENCE.get());
     }
 
     public void pickaxe(Supplier<? extends Block>... blocks) {

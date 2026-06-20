@@ -25,6 +25,9 @@ public class ModRecipeProvider extends RecipeProvider {
         doorBuilder(ModBlocks.MEAL_DOOR.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
         trapdoorBuilder(ModBlocks.MEAL_TRAPDOOR.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
         planksFromLog(recipeGenerator, ModBlocks.MEAL_PLANKS.get(), ModBlocks.MEAL_LOG.get(), 4);
+        buttonBuilder(ModBlocks.MEAL_BUTTON.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
+        fenceBuilder(ModBlocks.MEAL_FENCE.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
+        fenceGateBuilder(ModBlocks.MEAL_FENCE_GATE.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
 
         slabBuilder(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MEAL_SLAB.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
         stairBuilder(ModBlocks.MEAL_STAIRS.get(), Ingredient.of(ModBlocks.MEAL_PLANKS.get())).unlockedBy("has_item", has(ModBlocks.MEAL_PLANKS.get())).save(recipeGenerator);
