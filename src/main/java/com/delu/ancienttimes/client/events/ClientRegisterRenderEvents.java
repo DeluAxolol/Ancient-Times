@@ -5,22 +5,17 @@ import com.delu.ancienttimes.client.model.RumoroxlModel;
 import com.delu.ancienttimes.client.model.ScalemouflisModel;
 import com.delu.ancienttimes.client.model.TrioclantusModel;
 import com.delu.ancienttimes.client.renderer.RavenheadsFruitRenderer;
-import com.delu.ancienttimes.common.entity.client.ModBoatRenderer;
-import com.delu.ancienttimes.common.entity.client.ModModelLayers;
-import com.delu.ancienttimes.common.item.RavenheadsFruit;
-import com.delu.ancienttimes.common.item.RavenheadsFruitEntity;
+import com.delu.ancienttimes.server.entity.client.ModBoatRenderer;
+import com.delu.ancienttimes.server.entity.client.ModModelLayers;
 import com.delu.ancienttimes.registries.ModBlockEntityTypes;
-import com.delu.ancienttimes.registries.ModEntities;
+import com.delu.ancienttimes.registries.ATEntities;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -30,18 +25,18 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-@Mod.EventBusSubscriber(modid = AncientTimes.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = AncientTimes.ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientRegisterRenderEvents {
 
     @SubscribeEvent
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event){
-        event.registerEntityRenderer(ModEntities.TRIOCLANTUS.get(), createGeoRenderer(new TrioclantusModel()));
-        event.registerEntityRenderer(ModEntities.SCALEMOUFLIS.get(), createGeoRenderer(new ScalemouflisModel()));
-        event.registerEntityRenderer(ModEntities.RUMOROXL.get(), createGeoRenderer(new RumoroxlModel()));
-        event.registerEntityRenderer(ModEntities.RAVENHEADS_FRUIT_ENTITY.get(),
+        event.registerEntityRenderer(ATEntities.TRIOCLANTUS.get(), createGeoRenderer(new TrioclantusModel()));
+        event.registerEntityRenderer(ATEntities.SCALEMOUFLIS.get(), createGeoRenderer(new ScalemouflisModel()));
+        event.registerEntityRenderer(ATEntities.RUMOROXL.get(), createGeoRenderer(new RumoroxlModel()));
+        event.registerEntityRenderer(ATEntities.RAVENHEADS_FRUIT_ENTITY.get(),
                 RavenheadsFruitRenderer::new);
-        event.registerEntityRenderer(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
-        event.registerEntityRenderer(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
+        event.registerEntityRenderer(ATEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
+        event.registerEntityRenderer(ATEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 
     }
 

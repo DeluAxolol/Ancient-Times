@@ -1,8 +1,8 @@
 package com.delu.ancienttimes.datagen.server;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.loot.AddItemModifier;
-import com.delu.ancienttimes.common.loot.AddSusSandItemModifier;
+import com.delu.ancienttimes.server.loot.AddItemModifier;
+import com.delu.ancienttimes.server.loot.AddSusSandItemModifier;
 import com.delu.ancienttimes.registries.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +14,7 @@ import net.minecraftforge.common.loot.LootTableIdCondition;
 
 public class ModLootModifierProvider extends GlobalLootModifierProvider {
     public ModLootModifierProvider(PackOutput output) {
-        super(output, AncientTimes.MODID);
+        super(output, AncientTimes.ID);
     }
 
     @Override

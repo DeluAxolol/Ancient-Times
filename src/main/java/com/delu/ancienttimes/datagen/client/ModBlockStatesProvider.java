@@ -1,12 +1,11 @@
 package com.delu.ancienttimes.datagen.client;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.block.RavenheadSprouts;
-import com.delu.ancienttimes.common.util.ResourceLocationUtils;
+import com.delu.ancienttimes.server.block.RavenheadSprouts;
+import com.delu.ancienttimes.server.util.ResourceLocationUtils;
 import com.delu.ancienttimes.registries.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -19,7 +18,7 @@ import java.util.function.Function;
 public class ModBlockStatesProvider extends BlockStateProvider {
 
     public ModBlockStatesProvider(PackOutput output, ExistingFileHelper helper) {
-        super(output, AncientTimes.MODID, helper);
+        super(output, AncientTimes.ID, helper);
     }
 
     @Override
@@ -107,7 +106,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
     private ConfiguredModel[] ravenHeadSproutsStates(BlockState state, CropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((RavenheadSprouts) block).getAgeProperty()),
-                new ResourceLocation(AncientTimes.MODID, "block/" + textureName + state.getValue(((RavenheadSprouts) block).getAgeProperty()))).renderType("cutout"));
+                new ResourceLocation(AncientTimes.ID, "block/" + textureName + state.getValue(((RavenheadSprouts) block).getAgeProperty()))).renderType("cutout"));
 
         return models;
     }
@@ -125,7 +124,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
     }
 
     public ResourceLocation blockTextureLoc(String name) {
-        return new ResourceLocation(AncientTimes.MODID, ModelProvider.BLOCK_FOLDER + "/" + name);
+        return new ResourceLocation(AncientTimes.ID, ModelProvider.BLOCK_FOLDER + "/" + name);
     }
 
     protected ResourceLocation key(Block block) {

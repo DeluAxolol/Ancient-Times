@@ -1,7 +1,7 @@
 package com.delu.ancienttimes.client.model;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.entity.Scalemouflis;
+import com.delu.ancienttimes.server.entity.Scalemouflis;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

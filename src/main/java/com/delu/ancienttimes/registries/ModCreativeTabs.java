@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModCreativeTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AncientTimes.MODID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AncientTimes.ID);
 
     //look in the ModItems and ModBlocks class as u see there are the tabs already defined,
     // so no need to register them here in the tab-registration, cause that might become very shit
@@ -27,6 +27,6 @@ public class ModCreativeTabs {
      * this is used so the LanguageProvider can actually use this as translation key
      */
     public static String createTranslationKey(String name) {
-        return "creativetab." + AncientTimes.MODID + "." + name;
+        return "creativetab." + AncientTimes.ID + "." + name;
     }
 }

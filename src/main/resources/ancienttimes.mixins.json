@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.delu.ancienttimes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "ancienttimes.refmap.json",
+  "mixins": [
+
+  ],
+  "client": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,42 @@
+ext {
+    minecraft_version = project.findProperty('minecraft_version') ?: '1.20.1'
+    mod_id = project.findProperty('mod_id') ?: 'default_mod_id'
+    mod_version = project.findProperty('mod_version') ?: '0.0.1'
+    mod_group_id = project.findProperty('mod_group_id') ?: 'com.example'
+    mod_name = project.findProperty('mod_name') ?: 'ModName'
+    mod_authors = project.findProperty('mod_authors') ?: 'Author'
+    mod_description = project.findProperty('mod_description') ?: 'Description'
+    mod_credits = project.findProperty('mod_credits') ?: ''
+    forge_version = project.findProperty('forge_version') ?: '47.2.0'
+    mapping_channel = project.findProperty('mapping_channel') ?: 'official'
+    mapping_version = project.findProperty('mapping_version') ?: '1.20.1'
+}
+
+def getGitVersion() {
+    def stdout = new ByteArrayOutputStream()
+    String finalVersion = null
+    try {
+        exec {
+            commandLine 'git', 'describe', '--tags', '--always'
+            standardOutput = stdout
+            ignoreExitValue = true
+        }
+        if (stdout.size() > 0) {
+            finalVersion = stdout.toString().trim()
+        }
+    } catch (Exception ignored) {
+    }
+    return finalVersion
+}
+
+void printSystemInfo() {
+    String javaVer = System.getProperty('java.version')
+    String jvmVer = System.getProperty('java.vm.version')
+    String vendor = System.getProperty('java.vendor')
+    String arch = System.getProperty('os.arch')
+    println "Java: ${javaVer}, JVM: ${jvmVer} (${vendor}), Arch: ${arch}"
+}
+
+project.ext.getGitVersion = this.&getGitVersion
+
+printSystemInfo()

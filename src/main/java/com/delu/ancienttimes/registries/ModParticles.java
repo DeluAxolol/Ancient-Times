@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModParticles {
 
-    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, AncientTimes.MODID);
+    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, AncientTimes.ID);
 
 
     //public static final RegistryObject<SimpleParticleType> HIGHLIGHT_PARTICLE = register("highlight_particle", false);

@@ -1,6 +1,6 @@
 package com.delu.ancienttimes.datagen.server.loot;
 
-import com.delu.ancienttimes.common.block.RavenheadSprouts;
+import com.delu.ancienttimes.server.block.RavenheadSprouts;
 import com.delu.ancienttimes.registries.ModBlocks;
 import com.delu.ancienttimes.registries.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -38,57 +38,24 @@ public class ModBlockLoot extends BlockLootSubProvider {
     @Override
     protected void generate() {
         makeBushBlocks();
-        dropSelf(
-                ModBlocks.STRIPPED_MEAL_LOG,
-                ModBlocks.MEAL_DOOR,
-                ModBlocks.MEAL_TRAPDOOR,
-                ModBlocks.MEAL_LOG,
-                ModBlocks.MEAL_PLANKS,
-                ModBlocks.MEAL_LEAVES,
-                ModBlocks.MEAL_SAPLING,
-                ModBlocks.MEAL_STAIRS,
-                ModBlocks.MEAL_SLAB,
-                ModBlocks.RAVENHEADS_THORNBUSH_BLOCK
-        );
-        this.add(ModBlocks.MEAL_SIGN.get(), block ->
-                createSingleItemTable(ModItems.MEAL_SIGN.get()));
-        this.add(ModBlocks.MEAL_WALL_SIGN.get(), block ->
-                createSingleItemTable(ModItems.MEAL_SIGN.get()));
-        this.add(ModBlocks.MEAL_HANGING_SIGN.get(), block ->
-                createSingleItemTable(ModItems.MEAL_HANGING_SIGN.get()));
-        this.add(ModBlocks.MEAL_WALL_HANGING_SIGN.get(), block ->
-                createSingleItemTable(ModItems.MEAL_HANGING_SIGN.get()));
+        dropSelf(ModBlocks.STRIPPED_MEAL_LOG, ModBlocks.MEAL_DOOR, ModBlocks.MEAL_TRAPDOOR, ModBlocks.MEAL_LOG, ModBlocks.MEAL_PLANKS, ModBlocks.MEAL_SAPLING, ModBlocks.MEAL_STAIRS, ModBlocks.MEAL_SLAB, ModBlocks.RAVENHEADS_THORNBUSH_BLOCK);
+
+        this.add(ModBlocks.MEAL_LEAVES.get(), this.createLeavesDrops(ModBlocks.MEAL_LEAVES.get(), ModBlocks.MEAL_SAPLING.get(), 0.05F, 0.0625F, 0.083333336F, 0.1F));
+
+        this.add(ModBlocks.MEAL_SIGN.get(), block -> createSingleItemTable(ModItems.MEAL_SIGN.get()));
+        this.add(ModBlocks.MEAL_WALL_SIGN.get(), block -> createSingleItemTable(ModItems.MEAL_SIGN.get()));
+        this.add(ModBlocks.MEAL_HANGING_SIGN.get(), block -> createSingleItemTable(ModItems.MEAL_HANGING_SIGN.get()));
+        this.add(ModBlocks.MEAL_WALL_HANGING_SIGN.get(), block -> createSingleItemTable(ModItems.MEAL_HANGING_SIGN.get()));
 
     }
 
     protected void makeBushBlocks() {
-        add(ModBlocks.MARD_FLOWER.get(), PlantLootBuilder.builder(BlockStateProperties.AGE_3, ModItems.MARD_BULB.get())
-                .defaultWhenAge(0)
-                .defaultWhenAge(1)
-                .defaultWhenAge(2)
-                .defaultWhenAge(3, 0.4f)
-                .whenAge(3, ModItems.MARD_FLOWER.get())
-        );
-        LootItemCondition.Builder stage3Condition = LootItemBlockStatePropertyCondition
-                .hasBlockStateProperties(ModBlocks.RAVENHEAD_SPROUTS.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RavenheadSprouts.AGE, 3));
+        add(ModBlocks.MARD_FLOWER.get(), PlantLootBuilder.builder(BlockStateProperties.AGE_3, ModItems.MARD_BULB.get()).defaultWhenAge(0).defaultWhenAge(1).defaultWhenAge(2).defaultWhenAge(3, 0.4f).whenAge(3, ModItems.MARD_FLOWER.get()));
+        LootItemCondition.Builder stage3Condition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.RAVENHEAD_SPROUTS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RavenheadSprouts.AGE, 3));
 
-        LootItemCondition.Builder stage4Condition = LootItemBlockStatePropertyCondition
-                .hasBlockStateProperties(ModBlocks.RAVENHEAD_SPROUTS.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RavenheadSprouts.AGE, 4));
+        LootItemCondition.Builder stage4Condition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.RAVENHEAD_SPROUTS.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RavenheadSprouts.AGE, 4));
 
-        this.add(ModBlocks.RAVENHEAD_SPROUTS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(ModItems.RAVENHEADS_FRUIT.get())
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 4)))
-                                .when(stage3Condition)))
-                .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(ModItems.ROTTEN_RAVENHEADS_FRUIT.get())
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 4)))
-                                .when(stage4Condition)))
-                .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(ModItems.RAVENHEAD_SEEDS.get())
-                                .when(stage3Condition.or(stage4Condition)))));
+        this.add(ModBlocks.RAVENHEAD_SPROUTS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.RAVENHEADS_FRUIT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 4))).when(stage3Condition))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.ROTTEN_RAVENHEADS_FRUIT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 4))).when(stage4Condition))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.RAVENHEAD_SEEDS.get()).when(stage3Condition.or(stage4Condition)))));
     }
 
     @SafeVarargs

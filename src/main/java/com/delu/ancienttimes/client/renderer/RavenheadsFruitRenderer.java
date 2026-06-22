@@ -1,7 +1,6 @@
 package com.delu.ancienttimes.client.renderer;
 
-import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.item.RavenheadsFruitEntity;
+import com.delu.ancienttimes.server.item.RavenheadsFruitEntity;
 import com.delu.ancienttimes.registries.ModItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -11,10 +10,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 
 public class RavenheadsFruitRenderer extends EntityRenderer<RavenheadsFruitEntity> {
 

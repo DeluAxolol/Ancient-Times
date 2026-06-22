@@ -1,7 +1,7 @@
 package com.delu.ancienttimes.client.model;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.entity.Trioclantus;
+import com.delu.ancienttimes.server.entity.Trioclantus;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

@@ -1,7 +1,6 @@
 package com.delu.ancienttimes.datagen.client;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.registries.ModBlocks;
 import com.delu.ancienttimes.registries.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +20,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
     public final ModelFile rod = getExistingFile(mcLoc("item/handheld_rod"));
     public final ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
     public ModItemModelsProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, AncientTimes.MODID, existingFileHelper);
+        super(output, AncientTimes.ID, existingFileHelper);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(AncientTimes.MODID,"item/" + item.getId().getPath()));
+                new ResourceLocation(AncientTimes.ID,"item/" + item.getId().getPath()));
     }
     private void spawnEgg(Item... items) {
         for (Item item : items) {

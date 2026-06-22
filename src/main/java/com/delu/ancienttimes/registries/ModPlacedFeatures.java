@@ -1,22 +1,20 @@
 package com.delu.ancienttimes.registries;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.tree.MealFoliagePlacer;
-import com.delu.ancienttimes.common.tree.MealTrunkPlacer;
-import net.minecraft.core.Registry;
+import com.delu.ancienttimes.server.tree.MealFoliagePlacer;
+import com.delu.ancienttimes.server.tree.MealTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModPlacedFeatures {
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS =
-            DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, AncientTimes.MODID);
+            DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, AncientTimes.ID);
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS =
-            DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, AncientTimes.MODID);
+            DeferredRegister.create(Registries.FOLIAGE_PLACER_TYPE, AncientTimes.ID);
 
     public static final RegistryObject<FoliagePlacerType<MealFoliagePlacer>> MEAL_FOLIAGE_PLACER =
             FOLIAGE_PLACERS.register("meal_foliage_placer",

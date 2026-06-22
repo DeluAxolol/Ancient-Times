@@ -1,0 +1,4 @@
+mixin {
+    add sourceSets.main, "ancienttimes.refmap.json"
+    config "ancienttimes.mixins.json"
+}

@@ -1,7 +1,7 @@
 package com.delu.ancienttimes.client.model;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.entity.Rumoroxl;
+import com.delu.ancienttimes.server.entity.Rumoroxl;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 
@@ -11,9 +11,17 @@ public class RumoroxlModel extends GeoModel<Rumoroxl> {
         return AncientTimes.geo("rumoroxl/rumoroxl.geo.json");
     }
 
+    /*
     @Override
     public ResourceLocation getTextureResource(Rumoroxl rumoroxl) {
         return rumoroxl.getVariant().getTexture();
+    }
+
+     */
+
+    @Override
+    public ResourceLocation getTextureResource(Rumoroxl rumoroxl) {
+        return new ResourceLocation(AncientTimes.ID, "textures/entity/rumoroxl/rumoroxl.png");
     }
 
     @Override

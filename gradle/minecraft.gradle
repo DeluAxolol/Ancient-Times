@@ -1,0 +1,60 @@
+minecraft {
+    mappings channel: property('mapping_channel'), version: property('mapping_version')
+    copyIdeResources = true
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                ancienttimes {
+                    source sourceSets.main
+                }
+            }
+        }
+        client {
+            properties 'mixin.env.remapRefMap': 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.projectDir}/build/createSrgToMcp/output.srg"
+            workingDirectory project.file('run')
+            arg "-mixin.config=ancienttimes.mixins.json"
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            args '--username', (project.findProperty('mc_username') ?: 'Dev'), '--uuid', (project.findProperty('mc_uuid') ?: '00000000-0000-0000-0000-000000000000')
+            mods {
+                ancienttimes {
+                    source sourceSets.main
+                }
+            }
+            property 'forge.enabledGameTestNamespaces', property('mod_id')
+        }
+        server {
+            property 'forge.enabledGameTestNamespaces', property('mod_id')
+            args '--nogui'
+            properties 'mixin.env.remapRefMap': 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.projectDir}/build/createSrgToMcp/output.srg"
+            workingDirectory project.file('run')
+            arg "-mixin.config=ancienttimes.mixins.json"
+            property 'forge.logging.console.level', 'debug'
+
+
+            mods {
+                ancienttimes {
+                    source sourceSets.main
+                }
+            }
+        }
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', property('mod_id')
+            mods {
+                ancienttimes {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run-data')
+            args '--mod', property('mod_id'), '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+}

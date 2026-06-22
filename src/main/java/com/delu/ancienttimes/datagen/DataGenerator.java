@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.concurrent.CompletableFuture;
 
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = AncientTimes.MODID)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = AncientTimes.ID)
 public class DataGenerator {
 
 

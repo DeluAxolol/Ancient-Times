@@ -1,14 +1,13 @@
 package com.delu.ancienttimes.datagen.server;
 
 import com.delu.ancienttimes.AncientTimes;
-import com.delu.ancienttimes.common.tags.ModTags;
+import com.delu.ancienttimes.server.tags.ModTags;
 import com.delu.ancienttimes.registries.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +19,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unchecked")
 public class ModBlockTagsProvider extends BlockTagsProvider {
     public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, AncientTimes.MODID, existingFileHelper);
+        super(output, lookupProvider, AncientTimes.ID, existingFileHelper);
     }
 
     @Override
